@@ -1,6 +1,7 @@
 {
   "name": "bap-think-pink",
   "version": "0.1.0",
+  "description": "Race for the Cure Team Platform - build for Think-Pink Europe",
   "private": true,
   "scripts": {
     "dev": "next dev",
