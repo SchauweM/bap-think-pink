@@ -1,5 +1,7 @@
 import React from 'react';
-import Document from 'next/document';
+import Document, {
+  Html, Head, Main, NextScript,
+} from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
 export default class MyDocument extends Document {
@@ -27,5 +29,35 @@ export default class MyDocument extends Document {
     } finally {
       sheet.seal();
     }
+  }
+
+  render() {
+    return (
+      <Html lang={this.props.__NEXT_DATA__.props.initialLanguage}>
+        <Head>
+          <script dangerouslySetInnerHTML={{
+            __html: `
+              WebFontConfig = {
+                google: {
+                  families: ['Roboto:400,500,700'],
+                }
+              };
+              (function(d) {
+                var wf = d.createElement('script'), s = d.scripts[0];
+                wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
+                wf.async = true;
+                s.parentNode.insertBefore(wf, s);
+              })(document);
+          `,
+          }}
+          />
+          {this.props.styles}
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
   }
 }
