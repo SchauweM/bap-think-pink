@@ -39,7 +39,7 @@ export default class MyDocument extends Document {
             __html: `
               WebFontConfig = {
                 google: {
-                  families: ['Roboto:400,500,700'],
+                  families: ['Ubuntu:700', 'Fira Sans:400,400i,500,500i,800,800i'],
                 }
               };
               (function(d) {
