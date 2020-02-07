@@ -16,12 +16,12 @@ const TeamNameForm = ({ formData, setFormData, nextStep }) => {
       .required('Motivation is required'),
   });
 
-  // const disableHandler = (errors, touched) => {
-  //   if (Object.entries(errors).length === 0 && !(Object.entries(touched).length === 0)) {
-  //     return false;
-  //   }
-  //   return true;
-  // };
+  const disableHandler = (errors, touched) => {
+    if (Object.entries(errors).length === 0 && !(Object.entries(touched).length === 0)) {
+      return false;
+    }
+    return true;
+  };
 
   return (
     <>
@@ -34,27 +34,30 @@ const TeamNameForm = ({ formData, setFormData, nextStep }) => {
           nextStep();
         }}
       >
-        {({ errors, touched }) => (
-          <Form>
-            <UserInput
-              errors={errors}
-              touched={touched}
-              type="text"
-              name="teamName"
-            >
-              Teamname
-            </UserInput>
-            <UserInput
-              errors={errors}
-              touched={touched}
-              type="text"
-              name="motivation"
-            >
-              Motivation
-            </UserInput>
-            <button type="submit">Continue</button>
-          </Form>
-        )}
+        {({ errors, touched }) => {
+          const disabled = disableHandler(errors, touched);
+          return (
+            <Form>
+              <UserInput
+                errors={errors}
+                touched={touched}
+                type="text"
+                name="teamName"
+              >
+                Teamname
+              </UserInput>
+              <UserInput
+                errors={errors}
+                touched={touched}
+                type="text"
+                name="motivation"
+              >
+                Motivation
+              </UserInput>
+              <button type="submit" disabled={disabled}>Continue</button>
+            </Form>
+          );
+        }}
       </Formik>
     </>
   );
