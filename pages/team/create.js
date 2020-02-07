@@ -3,7 +3,7 @@ import { func } from 'prop-types';
 
 import TeamNameForm from '../../components/Forms/CreateTeamForm/TeamNameForm';
 import TeamDetailForm from '../../components/Forms/CreateTeamForm/TeamDetailForm';
-
+import GenerateVideoForm from '../../components/Forms/CreateTeamForm/GenerateVideoForm';
 
 import { withTranslation } from '../../utils/i18n';
 
@@ -12,6 +12,11 @@ const Create = ({ t }) => {
   console.log(t);
 
   const [currentStep, setCurrentStep] = useState(1);
+  const [formData, setFormData] = useState({
+    teamName: '',
+    motivation: '',
+    companyName: '',
+  });
 
   const nextStep = () => {
     setCurrentStep(currentStep + 1);
@@ -27,12 +32,25 @@ const Create = ({ t }) => {
     case 1:
       return (
         <TeamNameForm
+          formData={formData}
+          setFormData={setFormData}
           nextStep={nextStep}
         />
       );
     case 2:
       return (
         <TeamDetailForm
+          formData={formData}
+          setFormData={setFormData}
+          nextStep={nextStep}
+          prevStep={prevStep}
+        />
+      );
+    case 3:
+      return (
+        <GenerateVideoForm
+          formData={formData}
+          setFormData={setFormData}
           nextStep={nextStep}
           prevStep={prevStep}
         />
