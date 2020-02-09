@@ -1,8 +1,9 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import { func } from 'prop-types';
+import { func, shape } from 'prop-types';
 import UserInput from '../Inputs/UserInput';
+import UserInputTextArea from '../Inputs/UserInputTextArea';
 
 const TeamNameForm = ({ formData, setFormData, nextStep }) => {
   const TeamNameSceme = Yup.object().shape({
@@ -25,7 +26,8 @@ const TeamNameForm = ({ formData, setFormData, nextStep }) => {
 
   return (
     <>
-      <h1>Step 1</h1>
+      <h1>Vertel ons over jouw team!</h1>
+      <p>Deze gegevens kan je later nog altijd aanpassen.</p>
       <Formik
         initialValues={formData}
         validationSchema={TeamNameSceme}
@@ -43,18 +45,20 @@ const TeamNameForm = ({ formData, setFormData, nextStep }) => {
                 touched={touched}
                 type="text"
                 name="teamName"
+                placeholder=""
               >
-                Teamname
+                Naam van jouw team
               </UserInput>
-              <UserInput
+              <UserInputTextArea
                 errors={errors}
                 touched={touched}
                 type="text"
                 name="motivation"
+                placeholder="Vertel meer over jou team en waarom jij en team aanmaakt."
               >
-                Motivation
-              </UserInput>
-              <button type="submit" disabled={disabled}>Continue</button>
+                Motivatie
+              </UserInputTextArea>
+              <button type="submit" disabled={disabled}>Bevestig gegevens</button>
             </Form>
           );
         }}
@@ -65,7 +69,7 @@ const TeamNameForm = ({ formData, setFormData, nextStep }) => {
 
 TeamNameForm.propTypes = {
   nextStep: func.isRequired,
-  formData: func.isRequired,
+  formData: shape({}).isRequired,
   setFormData: func.isRequired,
 };
 
