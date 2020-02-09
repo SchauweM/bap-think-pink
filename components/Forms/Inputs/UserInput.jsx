@@ -52,7 +52,7 @@ const UserInput = ({
           errors={errors[name] ? errors[name] : null}
           touched={touched[name] ? touched[name] : null}
           autoFocus={autofocus}
-          placeholder={placeholder === null ? '\u00A0' : null}
+          placeholder={placeholder === null ? '\u00A0' : placeholder}
         />
         <span>{children}</span>
         {errors[name] && touched[name] ? (
