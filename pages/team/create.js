@@ -16,6 +16,12 @@ const Create = ({ t }) => {
     teamName: '',
     motivation: '',
     companyName: '',
+    isBusiness: false,
+    businessName: '',
+    businessPhoto: '',
+    website: '',
+    facebook: '',
+    twitter: '',
   });
 
   const nextStep = () => {
