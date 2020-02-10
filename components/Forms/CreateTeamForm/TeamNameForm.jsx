@@ -17,8 +17,8 @@ const TeamNameForm = ({ formData, setFormData, nextStep }) => {
       .required('Motivation is required'),
   });
 
-  const disableHandler = (errors, touched) => {
-    if (Object.entries(errors).length === 0 && !(Object.entries(touched).length === 0)) {
+  const disableHandler = (errors) => {
+    if (Object.entries(errors).length === 0) {
       return false;
     }
     return true;
@@ -37,7 +37,7 @@ const TeamNameForm = ({ formData, setFormData, nextStep }) => {
         }}
       >
         {({ errors, touched }) => {
-          const disabled = disableHandler(errors, touched);
+          const disabled = disableHandler(errors);
           return (
             <Form>
               <UserInput
