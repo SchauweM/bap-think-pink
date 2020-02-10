@@ -3,7 +3,7 @@ import { func } from 'prop-types';
 
 import TeamNameForm from '../../components/Forms/CreateTeamForm/TeamNameForm';
 import TeamDetailForm from '../../components/Forms/CreateTeamForm/TeamDetailForm';
-import GenerateVideoForm from '../../components/Forms/CreateTeamForm/GenerateVideoForm';
+import CheckFormData from '../../components/Forms/CreateTeamForm/CheckFormData';
 
 import { withTranslation } from '../../utils/i18n';
 
@@ -16,7 +16,7 @@ const Create = ({ t }) => {
     teamName: '',
     motivation: '',
     companyName: '',
-    isBusiness: false,
+    type: '',
     businessName: '',
     businessPhoto: '',
     website: '',
@@ -54,9 +54,8 @@ const Create = ({ t }) => {
       );
     case 3:
       return (
-        <GenerateVideoForm
+        <CheckFormData
           formData={formData}
-          setFormData={setFormData}
           nextStep={nextStep}
           prevStep={prevStep}
         />
