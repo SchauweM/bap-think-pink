@@ -12,14 +12,19 @@ export const useAuth = () => useContext(authContext);
 
 function useProvideAuth() {
   const [user, setUser] = useState(null);
+  const [errors, setErrors] = useState();
 
-  const signin = (email, password) => firebase
-    .auth()
-    .signInWithEmailAndPassword(email, password)
-    .then((response) => {
-      setUser(response.user);
-      return response.user;
-    });
+  const signin = async (email, password) => {
+    try {
+      await firebase.auth().signInWithEmailAndPassword(email, password)
+        .then((response) => {
+          setUser(response.user);
+          return response.user;
+        });
+    } catch (error) {
+      setErrors(error.message);
+    }
+  };
 
   const signinWithGoogle = () => firebase
     .auth()
@@ -27,6 +32,9 @@ function useProvideAuth() {
     .then((response) => {
       setUser(response.user);
       return response.user;
+    }).catch((error) => {
+      setErrors(error);
+      console.log(errors);
     });
 
   const signinWithFacebook = () => firebase
@@ -77,6 +85,7 @@ function useProvideAuth() {
 
   return {
     user,
+    errors,
     signin,
     signinWithGoogle,
     signinWithFacebook,
