@@ -33,7 +33,7 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang={this.props.__NEXT_DATA__.props.initialLanguage}>
+      <Html>
         <Head>
           <script dangerouslySetInnerHTML={{
             __html: `

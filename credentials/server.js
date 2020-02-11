@@ -1,0 +1,12 @@
+module.exports = {
+  type: 'service_account',
+  project_id: 'rftc-thinkpink',
+  private_key_id: '6f329999d8f635344ab1ecf37b4b89a3af1a0694',
+  private_key: '-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDPNYQvD2/NBTr0\nM7xFKb9jeE1eKPzFYc104d9HfDfDykHERZcfKYN4lzNhV+wwDYuCA13End7qSoCW\nwYr7jXuJoISOl6QCKfb/zmle1elQmoIe5z25SZZaMVDgZjbq3uxA1ip9Ftb9Pp9c\npXTSpn6ha29gSRUw1H6Sad3l50XOeSjHbSdSt1N4G3OVzkRdSpli2+DCxb2kn9iy\ntcA1az7k4dUCtkYdw4D+DO7x50Kshq5ap7TQlZPnFBUt9eer6xxDpdS0NY9Sikpk\n7J5K8l1XdN3a9uS0xyJll9mEWL5idMkhd5hZRA2gKNgZwjQk5J3TO2+6MO4+fa8X\n/V13I08jAgMBAAECggEAEMUMBaMCMV2S/+CQBCj0zGAYIt6+Vlsr/aGqKGbtPHNK\nD1BygpshgMj754zuGJWADO2o0RjVybBt58WSMfmpXeIX2FJ9e49Z5ioWbQ5y64sV\nrNqaLDzAZlxHZ2HeX/PauwSaO7V1gNlonF7nrYS8CuRfBzPi+yi3dbILu2eURrly\nEyvWaDcX2tSZOTd0kYXUPp34muBlLadhxHw5KFhj4wxuay3wvh/vh2UxsCsM9Cwh\nhO0Uk2tpB1gPuaxaYCrMX7ksb9a51XlSfUiyTvi3LFXpiHoINNpwXf+hsdQrzUxW\nZ+PEJJv0+fdvaRDtwVGZlT/UXrjaNdrAea1HdUWaQQKBgQD+v5ZhqoVgZ1YYRE0z\nhaVM8HpCPnWOVpaxTCdgOXwLhBTCaHdKJcf13jRvbVg/qD4zIbnQTM1ldhztbLiQ\nggBEh7snVwmBNEMEQngEF3/DI5AxgxDzJ715JOey44SFXFpuPhhY3dF6z+9tNsJS\nm0c0opMomd2t1hciiInyb0p/9wKBgQDQOiLDJQihgCVOS632ietLdb/e9WYw8Yg3\nbmAnY7oY9KvLkxXdp6LZJ1cYKfobYUldcJlCUZYoIV8RRqQ9dh7ADw06QA9muVkJ\nlJglOLUa7JneOycqXWq2XBpZhqzz1jeFizsk0lIQBIYwjs7mct1eDEsk1MduCGcE\nC4FDhd13NQKBgQDlenhg6lbTjMLFgWF58/3/3PCFE/aZje6ZL9yYla/kP8rjhW9P\n39DM7qmVZo6EaW3+aXcU6Nptd4R/a9ymcDUFhq9UtNbfCNEF2Up7hR+WDUcrEsIG\nB9pqcpA1WTZbW+IqRM1x3/9//ifT3ewWtcHi7EBb5p8GpUCZ3x1EwnP96QKBgHHe\niOoMk4a17DC/5BdBXuH6N3321vaG7wXZH04LFFbXXidKfRekt8Jm6BL3yaU1c4hc\nrgL9WM8DSNjKt8BAmxpOYN5s778uNsmtb/JS638YyiAkWwuo4FVvUp2Ir4X8rIok\nFKjTNzs5LiTZw710LShkMqemkJTUlXk5zWuehfjNAoGBAN0LqjrdQBcmapwQgR93\nBauDOIpcjTDRPb5GNYwy536TpENhfyfGYAEnNANr9G88y55Q8lMXEHpk4tSl6yNg\n8T7ovHWkDdNwr/Is1OyUusoK1//I4P1g+/SF9a2oWyY2FRgf01JNYUztxoVMPDN4\n1y2xVm8nnBYYFU9UOVDQIvSF\n-----END PRIVATE KEY-----\n',
+  client_email: 'firebase-adminsdk-euzl9@rftc-thinkpink.iam.gserviceaccount.com',
+  client_id: '104221155481733743454',
+  auth_uri: 'https://accounts.google.com/o/oauth2/auth',
+  token_uri: 'https://oauth2.googleapis.com/token',
+  auth_provider_x509_cert_url: 'https://www.googleapis.com/oauth2/v1/certs',
+  client_x509_cert_url: 'https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-euzl9%40rftc-thinkpink.iam.gserviceaccount.com',
+};
