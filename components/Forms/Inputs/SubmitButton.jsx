@@ -2,19 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import { string, bool } from 'prop-types';
 
-const Button = (props) => {
+const SubmitButton = (props) => {
   const {
     children,
     disabled,
   } = props;
   return (
-    <Btn type="button" disabled={disabled}>{children}</Btn>
+    <Btn type="submit" disabled={disabled}>{children}</Btn>
   );
 };
 
 const Btn = styled.button`
   display: flex;
-  align-self: center;
   justify-content: center;
   background-color: #112130;
   color: white;
@@ -26,12 +25,6 @@ const Btn = styled.button`
   border-radius: .5rem;
   border: none;
   transition: all .2s linear;
-  flex-grow: 1;
-  margin-bottom: 1.6rem;
-
-  &:last-of-type {
-    margin-bottom: 0;
-  }
 
   &:hover {
     cursor: pointer;
@@ -52,13 +45,13 @@ const Btn = styled.button`
   }
 `;
 
-Button.propTypes = {
+SubmitButton.propTypes = {
   children: string.isRequired,
   disabled: bool,
 };
 
-Button.defaultProps = {
+SubmitButton.defaultProps = {
   disabled: false,
 };
 
-export default Button;
+export default SubmitButton;
