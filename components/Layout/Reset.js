@@ -33,9 +33,10 @@ html, body, div, span, applet, object, iframe,
   }
 
   body {
-  line-height: 1;
-  color: #505050;
-  font-size: 1.6rem;
+    line-height: 1;
+    color: #505050;
+    font-size: 1.6rem;
+    font-family: 'Fira Sans', sans-serif;
   }
 
   ol, ul {
