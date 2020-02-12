@@ -6,11 +6,11 @@ import TeamDetailForm from '../../components/Forms/CreateTeamForm/TeamDetailForm
 import CheckFormData from '../../components/Forms/CreateTeamForm/CheckFormData';
 
 import { withTranslation } from '../../utils/i18n';
+import { useAuth } from '../../hooks/useAuth';
 
 // eslint-disable-next-line consistent-return
 const Create = ({ t }) => {
   console.log(t);
-
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
     teamName: '',
@@ -34,34 +34,42 @@ const Create = ({ t }) => {
     }
   };
 
-  switch (currentStep) {
-    case 1:
-      return (
-        <TeamNameForm
-          formData={formData}
-          setFormData={setFormData}
-          nextStep={nextStep}
-        />
-      );
-    case 2:
-      return (
-        <TeamDetailForm
-          formData={formData}
-          setFormData={setFormData}
-          nextStep={nextStep}
-          prevStep={prevStep}
-        />
-      );
-    case 3:
-      return (
-        <CheckFormData
-          formData={formData}
-          nextStep={nextStep}
-          prevStep={prevStep}
-        />
-      );
-    default:
-      break;
+  const auth = useAuth();
+
+  console.log(auth.user);
+
+  if (auth.user) {
+    switch (currentStep) {
+      case 1:
+        return (
+          <TeamNameForm
+            formData={formData}
+            setFormData={setFormData}
+            nextStep={nextStep}
+          />
+        );
+      case 2:
+        return (
+          <TeamDetailForm
+            formData={formData}
+            setFormData={setFormData}
+            nextStep={nextStep}
+            prevStep={prevStep}
+          />
+        );
+      case 3:
+        return (
+          <CheckFormData
+            formData={formData}
+            nextStep={nextStep}
+            prevStep={prevStep}
+          />
+        );
+      default:
+        break;
+    }
+  } else {
+    return <p>Not signed in</p>;
   }
 };
 

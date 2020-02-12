@@ -105,7 +105,7 @@ const StandardInput = styled(Field)`
       : '0.1rem solid #d3d4d8'};
   border-radius: 0.3rem;
   width: 100%;
-  height: ${(props) => props.type === 'textarea' ? '20rem' : '4rem'};
+  height: 4rem;
   padding-left: 1rem;
   font-size: 1.6rem;
 
