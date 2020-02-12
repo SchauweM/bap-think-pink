@@ -6,13 +6,13 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { func } from 'prop-types';
 
+import AuthLayout from '../../components/Layout/AuthLayout';
 import UserInput from '../../components/Forms/Inputs/UserInput';
-import FormLayout from '../../components/Layout/FormLayout';
+import SubmitButton from '../../components/Forms/Inputs/SubmitButton';
+import Button from '../../components/Forms/Inputs/Button';
 
 import { withTranslation } from '../../utils/i18n';
 import { useAuth } from '../../hooks/useAuth';
-import SubmitButton from '../../components/Forms/Inputs/SubmitButton';
-import Button from '../../components/Forms/Inputs/Button';
 
 const Login = ({ t }) => {
   console.log(t);
@@ -51,7 +51,7 @@ const Login = ({ t }) => {
   }
 
   return (
-    <FormLayout>
+    <AuthLayout>
       <Header>
         <Title>Maak nu zelf jouw team aan.</Title>
         <Subtitle>Meld je aan met jouw Think-Pink account.</Subtitle>
@@ -101,7 +101,7 @@ const Login = ({ t }) => {
         <Button onClick={() => auth.signinWithGoogle()}>Aanmelden met Google</Button>
         <Button onClick={() => auth.signinWithFacebook()}>Aanmelden met Facebook</Button>
       </SocialLoginWrapper>
-    </FormLayout>
+    </AuthLayout>
   );
 };
 

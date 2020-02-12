@@ -121,6 +121,10 @@ html, body, div, span, applet, object, iframe,
   strong {
     font-weight: 600;
   }
+
+  p {
+    line-height: 125%;
+  }
 `;
 
 export const Reset = createGlobalStyle`${reset}`;

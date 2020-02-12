@@ -1,25 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
-import { node } from 'prop-types';
+import { node, bool } from 'prop-types';
 
-const FormLayout = ({ children }) => {
+const AuthLayout = ({ children, register }) => {
   console.log(children);
   return (
-    <MainFormLayout>
+    <MainAuthLayout>
       <FormLeft>
         <p>Logo</p>
-        <FormContentWrapper role="main">
+        <FormContentWrapper register={register} role="main">
           {children}
         </FormContentWrapper>
       </FormLeft>
       <FormRight>
         Blabla
       </FormRight>
-    </MainFormLayout>
+    </MainAuthLayout>
   );
 };
 
-const MainFormLayout = styled.div`
+const MainAuthLayout = styled.div`
   display: flex;
   width: 100vw;
   height: 100vh;
@@ -43,15 +43,20 @@ const FormRight = styled.section`
 const FormContentWrapper = styled.main`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: ${(props) => props.register ? `initial` : `center`};
   max-width: 45rem;
-  margin: 0 auto;
+  margin: ${(props) => props.register ? `8rem auto 0` : `0 auto`};
   width: 100%;
-  height: 96%;
+  height: ${(props) => props.register ? `auto` : `96%`};
 `;
 
-FormLayout.propTypes = {
-  children: node.isRequired,
+AuthLayout.defaultProps = {
+  register: false,
 };
 
-export default FormLayout;
+AuthLayout.propTypes = {
+  children: node.isRequired,
+  register: bool,
+};
+
+export default AuthLayout;
