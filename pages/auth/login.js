@@ -32,7 +32,7 @@ const Login = ({ t }) => {
     const { email, password } = values;
     auth.signin(email, password);
     if (auth.errors) {
-      setErrorSending(auth.errors);
+      console.log(auth.errors);
     }
   };
 
