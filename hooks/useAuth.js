@@ -27,17 +27,28 @@ function useProvideAuth() {
     .auth()
     .signInWithPopup(new firebase.auth.GoogleAuthProvider().addScope('email'))
     .then((response) => {
+      firebase
+        .firestore()
+        .collection('users')
+        .doc(response.user.uid).set({
+          firstName: response.additionalUserInfo.profile.given_name,
+          lastName: response.additionalUserInfo.profile.family_name,
+        });
       setUser(response.user);
       return response.user;
-    }).catch((error) => {
-      setErrors(error);
-      console.log(errors);
     });
 
   const signinWithFacebook = () => firebase
     .auth()
     .signInWithPopup(new firebase.auth.FacebookAuthProvider().addScope('email'))
     .then((response) => {
+      firebase
+        .firestore()
+        .collection('users')
+        .doc(response.user.uid).set({
+          firstName: response.additionalUserInfo.profile.first_name,
+          lastName: response.additionalUserInfo.profile.last_name,
+        });
       setUser(response.user);
       return response.user;
     });
