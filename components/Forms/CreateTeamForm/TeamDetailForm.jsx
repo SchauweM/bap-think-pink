@@ -3,8 +3,13 @@ import styled from 'styled-components';
 import { func, shape } from 'prop-types';
 import { Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+
+import FormLayout from '../../Layout/FormLayout';
 import UserInput from '../Inputs/UserInput';
 import UserRadioSelect from '../Inputs/UserRadioSelect';
+import SubmitButton from '../Inputs/SubmitButton';
+import PrevButton from '../Inputs/PrevButton';
+import Header from '../../Layout/Header';
 
 const TeamDetailForm = ({
   formData, setFormData, nextStep, prevStep,
@@ -15,9 +20,11 @@ const TeamDetailForm = ({
       .min(1, 'Too short')
       .max(45, 'Too long'),
     website: Yup.string()
+      .url('Not a valid website')
       .min(8, 'Too short')
       .max(100, 'Too long'),
     facebook: Yup.string()
+      .url('Not a valid facebook page')
       .min(8, 'Too short')
       .max(100, 'Too long'),
     twitter: Yup.string()
@@ -39,9 +46,11 @@ const TeamDetailForm = ({
 
   console.log(formData.type);
   return (
-    <>
-      <h1>Hey, {formData.teamName}!</h1>
-      <p>We hebben nog enkele gegevens nodig voor jouw team compleet is. Deze kan je ook later nog wijzigen.</p>
+    <FormLayout>
+      <Header
+        title={`Hey, ${formData.teamName}!`}
+        text="We hebben nog enkele gegevens nodig voor jouw team compleet is. Deze kan je ook later nog wijzigen."
+      />
       <Formik
         initialValues={formData}
         validationSchema={TeamDetailSceme}
@@ -82,7 +91,7 @@ const TeamDetailForm = ({
                 touched={touched}
                 type="text"
                 name="businessName"
-                placeholder=""
+                placeholder="Think-Pink"
               >
                 Wat is de naam van het bedrijf of de vereniging? (Optioneel)
               </UserInput>
@@ -91,7 +100,7 @@ const TeamDetailForm = ({
                 touched={touched}
                 type="text"
                 name="website"
-                placeholder=""
+                placeholder="https://think-pink.be"
               >
                 Website url (optioneel)
               </UserInput>
@@ -100,7 +109,7 @@ const TeamDetailForm = ({
                 touched={touched}
                 type="text"
                 name="facebook"
-                placeholder=""
+                placeholder="https://facebook.com/ThinkPinkBelgie"
               >
                 Facebook url (optioneel)
               </UserInput>
@@ -109,17 +118,19 @@ const TeamDetailForm = ({
                 touched={touched}
                 type="text"
                 name="twitter"
-                placeholder="@"
+                placeholder="@thinkpinkinfo"
               >
                 Twitter handle (optioneel)
               </UserInput>
-              <button type="button" onClick={(e) => back(e)}>Vorige stap</button>
-              <button type="submit" disabled={disabled}>Bevestig gegevens</button>
+              <ButtonWrapper>
+                <PrevButton onClick={(e) => back(e)}>Vorige stap</PrevButton>
+                <SubmitButton disabled={disabled}>Bevestig gegevens</SubmitButton>
+              </ButtonWrapper>
             </Form>
           );
         }}
       </Formik>
-    </>
+    </FormLayout>
   );
 };
 
@@ -139,6 +150,12 @@ const ErrorContainer = styled.div`
 const ErrorMss = styled(ErrorMessage)`
   color: red;
   font-size: 1.4rem;
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 TeamDetailForm.propTypes = {
