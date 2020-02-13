@@ -133,7 +133,7 @@ const Home = ({ t }) => {
             </Scene>
           </Controller> */}
             <Controller>
-              <Scene classToggle={['.test', 'sweep']} triggerElement="#leafTrigger" reverse={false} indicators>
+              <Scene classToggle={['.test', 'sweep']} duration={2000} triggerElement="#leafTrigger" reverse indicators>
                 <>
                   <LeafTrigger id="leafTrigger" />
                   <LeafLAnim translateX="15" translateY="53">
@@ -216,6 +216,11 @@ const leafSweep = keyframes`
  100% {transform: rotate(0deg);}
 `;
 
+const leafSweepReverse = keyframes`
+ 0% {transform: rotate(0deg);}
+ 100% {transform: rotate(30deg);}
+`;
+
 const livingLeaf = keyframes`
  0% {transform: rotate(0);}
  100% {transform: rotate(-3deg);}
@@ -269,6 +274,7 @@ const LeafLAnim = styled.div`
   transform: translate(${(props) => props.translateX}rem, ${(props) => props.translateY}rem)};
   position: absolute;
   .sweep{
+    
     animation: ${leafSweep} 2${(props) => props.duration}s cubic-bezier(0.205, 0.450, 0.465, 1)  0${(props) => props.duration}s 1 alternate, ${livingLeaf} 4${(props) => props.duration}s ease-in  2${(props) => props.duration}s infinite alternate;
   }
 `;
@@ -360,7 +366,7 @@ text-align: center;
 const TextWrapper = styled.div`
   text-align: center;
   color: ${(props) => props.color};
-  width: 30rem;
+  width: 40rem;
   margin: 0 auto;
   transform: translate(0, ${(props) => props.yPos}vh)};
   z-index: 1000;
