@@ -1226,6 +1226,21 @@
     lodash.camelcase "^4.3.0"
     protobufjs "^6.8.6"
 
+"@nexrender/api@^1.10.0":
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/@nexrender/api/-/api-1.10.0.tgz#65a479ce57a3c7ade7c912bdaa7fdd7e848aa5d8"
+  integrity sha512-n0QO6Cs5O8VLQE919MO0YJZuK6+8QIdhfMVMzW6cVrjisvprY0pJLhZdUfWTKnKQDRF8jS8b2bl6X1e3x5ymgA==
+  dependencies:
+    "@nexrender/types" "^1.10.0"
+    isomorphic-unfetch "^3.0.0"
+
+"@nexrender/types@^1.10.0":
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/@nexrender/types/-/types-1.10.0.tgz#81793d938eed6d2a2b7393cf30f01ab0dfa216f4"
+  integrity sha512-/6Z0UP3g35Tujmp7a0uR6If8BWeMKp7h8NI0JaM2VhKh2py2KgMShPvNQttkqVT7TVXuoSNM4uUcRQkTSzpv9Q==
+  dependencies:
+    nanoid "^2.0.1"
+
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@protobufjs/aspromise/-/aspromise-1.1.2.tgz#9b8b0cc663d669a7d8f6f5d0893a14d348f30fbf"
@@ -5459,6 +5474,11 @@ nan@^2.12.1, nan@^2.13.2:
   version "2.14.0"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.14.0.tgz#7818f722027b2459a86f0295d434d1fc2336c52c"
   integrity sha512-INOFj37C7k3AfaNTtX8RhsTw7qRy7eLET14cROi9+5HAVbbHuIWUHEauBv5qT4Av2tWasiTY1Jw6puUNqRJXQg==
+
+nanoid@^2.0.1:
+  version "2.1.11"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-2.1.11.tgz#ec24b8a758d591561531b4176a01e3ab4f0f0280"
+  integrity sha512-s/snB+WGm6uwi0WjsZdaVcuf3KJXlfGl2LcxgwkEwJF0D/BWzVWAZW/XY4bFaiR7s0Jk3FPvlnepg1H1b1UwlA==
 
 nanomatch@^1.2.9:
   version "1.2.13"
