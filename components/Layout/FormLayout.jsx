@@ -35,19 +35,19 @@ const FormLeft = styled.section`
 const FormRight = styled.section`
   overflow-y: hidden;
   width: 55vw;
-  background: url('/static/global/images/noise_V2.png') repeat, #112130;
+  background: url('/static/global/assets/images/noise_V2.png') repeat, #112130;
   background-attachment: fixed;
-  background-size: 6rem, auto;
+  background-size: 9rem, auto;
 `;
 
 const FormContentWrapper = styled.main`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: initial;
   max-width: 45rem;
-  margin: 0 auto;
+  margin: 8rem auto 0;
   width: 100%;
-  height: 96%;
+  height: auto;
 `;
 
 FormLayout.propTypes = {

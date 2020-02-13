@@ -1,14 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import { string, bool } from 'prop-types';
+import { string, bool, func } from 'prop-types';
 
 const Button = (props) => {
   const {
     children,
     disabled,
+    onClick,
   } = props;
   return (
-    <Btn type="button" disabled={disabled}>{children}</Btn>
+    <Btn type="button" onClick={onClick} disabled={disabled}>{children}</Btn>
   );
 };
 
@@ -26,7 +27,6 @@ const Btn = styled.button`
   border-radius: .5rem;
   border: none;
   transition: all .2s linear;
-  flex-grow: 1;
   margin-bottom: 1.6rem;
 
   &:last-of-type {
@@ -55,6 +55,7 @@ const Btn = styled.button`
 Button.propTypes = {
   children: string.isRequired,
   disabled: bool,
+  onClick: func.isRequired,
 };
 
 Button.defaultProps = {

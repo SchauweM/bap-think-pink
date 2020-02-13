@@ -12,6 +12,7 @@ import SubmitButton from '../../components/Forms/Inputs/SubmitButton';
 
 import { withTranslation } from '../../utils/i18n';
 import { useAuth } from '../../hooks/useAuth';
+import Header from '../../components/Layout/Header';
 
 const Register = ({ t }) => {
   console.log(t);
@@ -59,10 +60,10 @@ const Register = ({ t }) => {
 
   return (
     <AuthLayout register>
-      <Header>
-        <Title>Maak nu zelf jouw team aan.</Title>
-        <Subtitle>Met een Think Pink account kan je gemakkelijk en snel inschrijven voor evenementen, shoppen in de Think Pink shop en word je op de hoogte gehouden van je deelname aan evenementen.</Subtitle>
-      </Header>
+      <Header
+        title="Maak nu zelf jouw team aan"
+        text="Met een Think Pink account kan je gemakkelijk en snel inschrijven voor evenementen, shoppen in de Think Pink shop en word je op de hoogte gehouden van je deelname aan evenementen."
+      />
       <Formik
         initialValues={{
           firstName: '',
@@ -136,20 +137,6 @@ const Register = ({ t }) => {
     </AuthLayout>
   );
 };
-
-const Header = styled.header`
-  margin-bottom: 5.8rem;
-`;
-
-const Title = styled.h1`
-  font-size: 3.1rem;
-  font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
-  margin-bottom: 1rem;
-`;
-
-const Subtitle = styled.p`
-  font-size: 1.8rem;
-`;
 
 const LoginWrapper = styled.div`
   display: flex;

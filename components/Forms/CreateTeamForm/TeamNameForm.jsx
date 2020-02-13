@@ -2,8 +2,12 @@ import React from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { func, shape } from 'prop-types';
+
+import FormLayout from '../../Layout/FormLayout';
 import UserInput from '../Inputs/UserInput';
 import UserInputTextArea from '../Inputs/UserInputTextArea';
+import SubmitButton from '../Inputs/SubmitButton';
+import Header from '../../Layout/Header';
 
 const TeamNameForm = ({ formData, setFormData, nextStep }) => {
   const TeamNameSceme = Yup.object().shape({
@@ -25,9 +29,8 @@ const TeamNameForm = ({ formData, setFormData, nextStep }) => {
   };
 
   return (
-    <>
-      <h1>Vertel ons over jouw team!</h1>
-      <p>Deze gegevens kan je later nog altijd aanpassen.</p>
+    <FormLayout>
+      <Header title="Vertel ons over jouw team!" text="Deze gegevens kan je later nog altijd aanpassen." />
       <Formik
         initialValues={formData}
         validationSchema={TeamNameSceme}
@@ -58,12 +61,12 @@ const TeamNameForm = ({ formData, setFormData, nextStep }) => {
               >
                 Motivatie
               </UserInputTextArea>
-              <button type="submit" disabled={disabled}>Bevestig gegevens</button>
+              <SubmitButton disabled={disabled}>Bevestig gegevens</SubmitButton>
             </Form>
           );
         }}
       </Formik>
-    </>
+    </FormLayout>
   );
 };
 

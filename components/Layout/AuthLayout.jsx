@@ -35,9 +35,10 @@ const FormLeft = styled.section`
 const FormRight = styled.section`
   overflow-y: hidden;
   width: 55vw;
-  background: url('/static/global/images/noise_V2.png') repeat, #112130;
+  background: url('/static/global/assets/images/noise_V2.png'), #112130;
   background-attachment: fixed;
-  background-size: 6rem, auto;
+  background-size: 9rem, auto;
+  mix-blend-mode: normal;
 `;
 
 const FormContentWrapper = styled.main`

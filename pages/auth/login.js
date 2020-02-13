@@ -10,6 +10,7 @@ import AuthLayout from '../../components/Layout/AuthLayout';
 import UserInput from '../../components/Forms/Inputs/UserInput';
 import SubmitButton from '../../components/Forms/Inputs/SubmitButton';
 import Button from '../../components/Forms/Inputs/Button';
+import Header from '../../components/Layout/Header';
 
 import { withTranslation } from '../../utils/i18n';
 import { useAuth } from '../../hooks/useAuth';
@@ -46,16 +47,16 @@ const Login = ({ t }) => {
       Router.push('/team/create');
     }, 5000);
     return (
-      <p>You&apos;re already signed in - redirecting you.</p>
+      <p>You&apos;re signed in - redirecting you.</p>
     );
   }
 
   return (
     <AuthLayout>
-      <Header>
-        <Title>Maak nu zelf jouw team aan.</Title>
-        <Subtitle>Meld je aan met jouw Think-Pink account.</Subtitle>
-      </Header>
+      <Header
+        title="Maak nu zelf jouw team aan"
+        text="Meld je aan met jouw Think-Pink account."
+      />
       <Formik
         initialValues={{
           email: '',
@@ -104,20 +105,6 @@ const Login = ({ t }) => {
     </AuthLayout>
   );
 };
-
-const Header = styled.header`
-  margin-bottom: 5.8rem;
-`;
-
-const Title = styled.h1`
-  font-size: 3.1rem;
-  font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
-  margin-bottom: 1rem;
-`;
-
-const Subtitle = styled.p`
-  font-size: 1.8rem;
-`;
 
 const SocialLoginWrapper = styled.div`
   display: flex;
