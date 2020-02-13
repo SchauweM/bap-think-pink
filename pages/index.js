@@ -34,7 +34,10 @@ const Home = ({ t }) => {
               duration="220s"
             />
           </WolkWrapper>
-          <Whatever>Hello Thomas</Whatever>
+          <TextWrapper xPos="-10" yPos="0" color="white">
+            <Title>Borstkanker...</Title>
+            <Text>Voor de meesten is dit te vergelijken met een lange, eindeloze en vooral eenzame val.</Text>
+          </TextWrapper>
           <WolkWrapper>
             <Wolk
               src="static/global/assets/images/onboarding/wolk1.png"
@@ -68,7 +71,6 @@ const Home = ({ t }) => {
           </WolkWrapper>
         </Deel1>
         <BushWrapper>
-          <Whatever>lorem ipsum alsabalanka testen</Whatever>
           <BushLWrapper>
             {/* <Controller>
             <Scene duration={600} classToggle="sweep" triggerElement=".leafLAnim" indicators>
@@ -117,6 +119,10 @@ const Home = ({ t }) => {
               </Scene>
             </Controller>
             <LeafTrigger id="leafTrigger" />
+            <TextWrapper xPos="0" yPos="0" color="white">
+              <Title>Een lange tocht</Title>
+              <Text>Het is alsof je de hele wereld moet doorreizen in je eentje. Kilometers ver, weken, maanden, jaren land ben je onderweg zonder een einde in zicht.</Text>
+            </TextWrapper>
           </BushLWrapper>
           <BushRWrapper>
             {/* <Controller>
@@ -129,6 +135,7 @@ const Home = ({ t }) => {
             <Controller>
               <Scene classToggle={['.test', 'sweep']} triggerElement="#leafTrigger" reverse={false} indicators>
                 <>
+                  <LeafTrigger id="leafTrigger" />
                   <LeafLAnim translateX="15" translateY="53">
                     <LeafL className="test" duration=".85s" src="static/global/assets/images/onboarding/leaf11L.png" />
                   </LeafLAnim>
@@ -165,7 +172,6 @@ const Home = ({ t }) => {
                 </>
               </Scene>
             </Controller>
-            <LeafTrigger id="leafTrigger" />
           </BushRWrapper>
         </BushWrapper>
         <IceWrapperAchter>
@@ -174,6 +180,10 @@ const Home = ({ t }) => {
         <IceWrapperVoor>
           <IceForground zPos="5" src="static/global/assets/images/onboarding/voorkant-ice.png" />
         </IceWrapperVoor>
+        <TextWrapper xPos="-5" yPos="200" color="black">
+          <Title>Maar</Title>
+          <Text>Sommige reizen denken we alleen te moeten doorstaan, maar dit is niet het geval. Race for the Cure is hier om het tegendeel te bewijzen. </Text>
+        </TextWrapper>
         <CityWrapper>
           <CityPeace src="static/global/assets/images/onboarding/huizen_links_voor.png" />
           <CityPeace src="static/global/assets/images/onboarding/finish.png" />
@@ -201,7 +211,7 @@ const livingLeaf = keyframes`
 `;
 
 const LeafTrigger = styled.div`
-  transform: translateY(10rem);
+  transform: translateY(-40rem);
 `;
 
 
@@ -229,7 +239,7 @@ const BushWrapper = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   transform-origin: 100%;
-  transform: translateY(100vh) translateZ(4rem) scale(.5);
+  transform: translateY(80vh) translateZ(4rem) scale(.5);
 `;
 
 const BushLWrapper = styled.div`
@@ -290,8 +300,9 @@ const CityWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-top:250vh;
+  margin-top:200vh;
   padding-top: 50vh;
+  transform: translateX(-65rem) translateY(25rem) translateZ(-6rem) scale(1.8);
 `;
 
 const Container = styled.div`
@@ -308,25 +319,38 @@ const Container = styled.div`
     #192d3f 71.59%,
     #091119 102.36%
   );
+
+  background-size: 8rem;
 `;
 
 const ContainerWrapper = styled.div`
-  background: url(static/global/assets/images/onboarding/noise_V2.png),
-  linear-gradient(
-    #091119 102.36%
-  );
   background-attachment: fixed, scroll;
   background-size: 6rem, auto;
   height: 100vh;
 
 `;
 
-
-const Whatever = styled.p`
-  text-align: center;
-  position: absolute;
-  left: 50%
+const Title = styled.p`
+    font-family: ubuntu;
+    weight: bold;
+    font-size: 3rem;
+    text-aling: center;
 `;
+
+
+const Text = styled.p`
+  text-aling: center;
+`;
+
+const TextWrapper = styled.div`
+
+  color: white;
+  position: absolute;
+  margin-left: 50vw;
+  max-width: 25rem;
+  transform: translate(${(props) => props.xPos}rem, ${(props) => props.yPos}vh)};
+`;
+
 
 // inser javascript
 
