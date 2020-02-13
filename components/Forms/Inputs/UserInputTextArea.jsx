@@ -93,7 +93,6 @@ const StyledLabel = styled.label`
     font-size: 1.6rem;
     transition: 0.2s;
     margin-bottom: 1rem;
-    font-weight: bold;
   }
 `;
 

@@ -1,26 +1,29 @@
 import React, { useState } from 'react';
 import { func } from 'prop-types';
+import useRequireAuth from '../../hooks/useRequireAuth';
 
+import Loading from '../../components/Loader';
 import TeamNameForm from '../../components/Forms/CreateTeamForm/TeamNameForm';
 import TeamDetailForm from '../../components/Forms/CreateTeamForm/TeamDetailForm';
 import CheckFormData from '../../components/Forms/CreateTeamForm/CheckFormData';
+import GenerateVideo from '../../components/Forms/CreateTeamForm/GenerateVideo';
 
 import { withTranslation } from '../../utils/i18n';
-import { useAuth } from '../../hooks/useAuth';
 
 // eslint-disable-next-line consistent-return
 const Create = ({ t }) => {
   console.log(t);
-  const [currentStep, setCurrentStep] = useState(1);
+  const auth = useRequireAuth();
+  const [currentStep, setCurrentStep] = useState(4);
+  const [teamId, setTeamId] = useState('qz0dbcEvIBS7mMad74hI');
   const [formData, setFormData] = useState({
-    teamName: '',
-    motivation: '',
-    companyName: '',
-    type: '',
-    businessName: '',
+    teamName: 'WeRun against cancer',
+    motivation: 'We hate cancer.',
+    type: 'business',
+    businessName: 'Wegroup NV',
     businessPhoto: '',
-    website: '',
-    facebook: '',
+    website: 'https://wegroup.be',
+    facebook: 'https://facebook.com/wegroup.be',
     twitter: '',
   });
 
@@ -34,42 +37,45 @@ const Create = ({ t }) => {
     }
   };
 
-  const auth = useAuth();
+  if (!auth) {
+    return <Loading />;
+  }
 
-  console.log(auth.user);
-
-  if (auth.user) {
-    switch (currentStep) {
-      case 1:
-        return (
-          <TeamNameForm
-            formData={formData}
-            setFormData={setFormData}
-            nextStep={nextStep}
-          />
-        );
-      case 2:
-        return (
-          <TeamDetailForm
-            formData={formData}
-            setFormData={setFormData}
-            nextStep={nextStep}
-            prevStep={prevStep}
-          />
-        );
-      case 3:
-        return (
-          <CheckFormData
-            formData={formData}
-            nextStep={nextStep}
-            prevStep={prevStep}
-          />
-        );
-      default:
-        break;
-    }
-  } else {
-    return <p>Not signed in</p>;
+  switch (currentStep) {
+    case 1:
+      return (
+        <TeamNameForm
+          formData={formData}
+          setFormData={setFormData}
+          nextStep={nextStep}
+        />
+      );
+    case 2:
+      return (
+        <TeamDetailForm
+          formData={formData}
+          setFormData={setFormData}
+          nextStep={nextStep}
+          prevStep={prevStep}
+        />
+      );
+    case 3:
+      return (
+        <CheckFormData
+          formData={formData}
+          nextStep={nextStep}
+          prevStep={prevStep}
+          setTeamId={setTeamId}
+        />
+      );
+    case 4:
+      return (
+        <GenerateVideo
+          teamId={teamId}
+        />
+      );
+    default:
+      break;
   }
 };
 

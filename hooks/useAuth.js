@@ -4,6 +4,7 @@ import React, {
 import { shape } from 'prop-types';
 import loadFirebaseClient from '../utils/firebase';
 import 'firebase/auth';
+import 'firebase/firestore';
 
 const authContext = createContext();
 const firebase = loadFirebaseClient;
@@ -14,44 +15,63 @@ function useProvideAuth() {
   const [user, setUser] = useState(null);
   const [errors, setErrors] = useState();
 
-  const signin = async (email, password) => {
-    try {
-      await firebase.auth().signInWithEmailAndPassword(email, password)
-        .then((response) => {
-          setUser(response.user);
-          return response.user;
-        });
-    } catch (error) {
-      setErrors(error.message);
-    }
-  };
-
-  const signinWithGoogle = () => firebase
+  const signin = (email, password) => firebase
     .auth()
-    .signInWithPopup(new firebase.auth.GoogleAuthProvider())
+    .signInWithEmailAndPassword(email, password)
     .then((response) => {
       setUser(response.user);
       return response.user;
-    }).catch((error) => {
-      setErrors(error);
-      console.log(errors);
+    }).catch((error) => setErrors({ error }));
+
+  const signinWithGoogle = () => firebase
+    .auth()
+    .signInWithPopup(new firebase.auth.GoogleAuthProvider().addScope('email'))
+    .then((response) => {
+      firebase
+        .firestore()
+        .collection('users')
+        .doc(response.user.uid).set({
+          firstName: response.additionalUserInfo.profile.given_name,
+          lastName: response.additionalUserInfo.profile.family_name,
+        });
+      setUser(response.user);
+      return response.user;
     });
 
   const signinWithFacebook = () => firebase
     .auth()
-    .signInWithPopup(new firebase.auth.FacebookAuthProvider())
+    .signInWithPopup(new firebase.auth.FacebookAuthProvider().addScope('email'))
     .then((response) => {
+      firebase
+        .firestore()
+        .collection('users')
+        .doc(response.user.uid).set({
+          firstName: response.additionalUserInfo.profile.first_name,
+          lastName: response.additionalUserInfo.profile.last_name,
+        });
       setUser(response.user);
       return response.user;
     });
 
-  const signup = (email, password) => firebase
+  const signup = (data) => firebase
     .auth()
-    .createUserWithEmailAndPassword(email, password)
+    .createUserWithEmailAndPassword(data.email, data.password)
     .then((response) => {
+      firebase
+        .firestore()
+        .collection('users')
+        .doc(response.user.uid).set({
+          firstName: data.firstName,
+          lastName: data.lastName,
+        });
       setUser(response.user);
       return response.user;
     });
+    // .then((response) => {
+    //   // setUser(response.user);
+    //   // return response.user;
+    //   console.log(response);
+    // }).catch((error) => console.log(error));
 
   const signout = () => firebase
     .auth()
