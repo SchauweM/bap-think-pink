@@ -83,7 +83,7 @@ const Home = ({ t }) => {
               <Scene classToggle={['.test', 'sweep']} triggerElement="#leafTrigger" reverse={false} indicators>
                 <>
                   <LeafLAnim translateX="15" translateY="57">
-                    <LeafL className="test" className="test" duration=".85s" src="static/global/assets/images/onboarding/leaf11L.png" />
+                    <LeafL className="test" duration=".85s" src="static/global/assets/images/onboarding/leaf11L.png" />
                   </LeafLAnim>
                   <LeafLAnim translateX="30" translateY="47">
                     <LeafL className="test" duration=".8s" src="static/global/assets/images/onboarding/leaf10L.png" />
@@ -119,11 +119,11 @@ const Home = ({ t }) => {
               </Scene>
             </Controller>
             <LeafTrigger id="leafTrigger" />
-            <TextWrapper xPos="0" yPos="0" color="white">
-              <Title>Een lange tocht</Title>
-              <Text>Het is alsof je de hele wereld moet doorreizen in je eentje. Kilometers ver, weken, maanden, jaren land ben je onderweg zonder een einde in zicht.</Text>
-            </TextWrapper>
           </BushLWrapper>
+          <TextWrapper xPos="0" yPos="70" color="white">
+            <Title>Een lange tocht</Title>
+            <Text>Het is alsof je de hele wereld moet doorreizen in je eentje. Kilometers ver, weken, maanden, jaren land ben je onderweg zonder een einde in zicht.</Text>
+          </TextWrapper>
           <BushRWrapper>
             {/* <Controller>
             <Scene duration={600} classToggle="sweep" triggerElement=".leafLAnim" indicators>
@@ -175,16 +175,27 @@ const Home = ({ t }) => {
           </BushRWrapper>
         </BushWrapper>
         <IceWrapperAchter>
-          <IceBackground zPos="0" src="static/global/assets/images/onboarding/achterkant-ice.png" />
+          <IceBackground yPos="-15" src="static/global/assets/images/onboarding/sterren.png" />
+          <IceBackground yPos="10" src="static/global/assets/images/onboarding/achterkant-ice.png" />
         </IceWrapperAchter>
         <IceWrapperVoor>
           <IceForground zPos="5" src="static/global/assets/images/onboarding/voorkant-ice.png" />
+          <TextWrapper xPos="-50" yPos="375" color="black">
+            <Title>Maar</Title>
+            <Text>Sommige reizen denken we alleen te moeten doorstaan, maar dit is niet het geval. Race for the Cure is hier om het tegendeel te bewijzen. </Text>
+          </TextWrapper>
         </IceWrapperVoor>
-        <TextWrapper xPos="-5" yPos="200" color="black">
-          <Title>Maar</Title>
-          <Text>Sommige reizen denken we alleen te moeten doorstaan, maar dit is niet het geval. Race for the Cure is hier om het tegendeel te bewijzen. </Text>
+        <TextWrapper xPos="-10" yPos="280" color="white">
+          <Title>Samen staan we sterk</Title>
+          <Text>Loop samen met vrienden en familie de race om, aan te tonen dat mensen deze reis niet alleen moeten trotseren. Steun Think-Pink en steek jouw lotgenoten een hart onder de riem.</Text>
+        </TextWrapper>
+
+        <TextWrapper xPos="0" yPos="285" color="white">
+          <Title>Doe mee aan de Race for the Cure!</Title>
+          <Text>Scrijf je nu in via ons digitaal platform.</Text>
         </TextWrapper>
         <CityWrapper>
+
           <CityPeace src="static/global/assets/images/onboarding/huizen_links_voor.png" />
           <CityPeace src="static/global/assets/images/onboarding/finish.png" />
           <CityPeace src="static/global/assets/images/onboarding/huizen_rechts_voor.png" />
@@ -285,12 +296,13 @@ const IceWrapperAchter = styled.div`
 
 const IceBackground = styled.img`
   position: absolute;
-  top: 330vh;
+  top: 310vh;
+  transform: translateY(${(props) => props.yPos}rem);
 `;
 
 const IceForground = styled.img`
   position: absolute;
-  top: 340vh;
+  top: 320vh;
 `;
 
 
@@ -300,9 +312,10 @@ const CityWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-top:200vh;
+  margin-top:160vh;
   padding-top: 50vh;
-  transform: translateX(-65rem) translateY(25rem) translateZ(-6rem) scale(1.8);
+  transform: translateX(-65rem) translateY(0) translateZ(-6rem) scale(1.8);
+  pointer-events: none;
 `;
 
 const Container = styled.div`
@@ -312,7 +325,7 @@ const Container = styled.div`
   overflow-y: scroll;
   perspective: 8rem;
   perspective-origin: 100%;
-
+  position: relative;
   background: url(static/global/assets/images/onboarding/noise_V2.png),
   linear-gradient(
     184.99deg,
@@ -327,28 +340,30 @@ const ContainerWrapper = styled.div`
   background-attachment: fixed, scroll;
   background-size: 6rem, auto;
   height: 100vh;
-
 `;
 
 const Title = styled.p`
-    font-family: ubuntu;
-    weight: bold;
-    font-size: 3rem;
-    text-aling: center;
+  text-align: center;
+  font-family: ubuntu;
+  weight: bold;
+  font-size: 4rem;
+  text-aling: center;
 `;
 
 
 const Text = styled.p`
-  text-aling: center;
+text-align: center;
+  line-height: 2.2rem;
+  margin-top: 1em;
 `;
 
 const TextWrapper = styled.div`
-
-  color: white;
-  position: absolute;
-  margin-left: 50vw;
-  max-width: 25rem;
-  transform: translate(${(props) => props.xPos}rem, ${(props) => props.yPos}vh)};
+  text-align: center;
+  color: ${(props) => props.color};
+  width: 30rem;
+  margin: 0 auto;
+  transform: translate(0, ${(props) => props.yPos}vh)};
+  z-index: 1000;
 `;
 
 
