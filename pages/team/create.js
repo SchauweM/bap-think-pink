@@ -16,16 +16,16 @@ import { withTranslation } from '../../utils/i18n';
 const Create = ({ t }) => {
   console.log(t);
   const auth = useRequireAuth();
-  const [currentStep, setCurrentStep] = useState(5);
-  const [teamId, setTeamId] = useState('qz0dbcEvIBS7mMad74hI');
+  const [currentStep, setCurrentStep] = useState(1);
+  const [teamId, setTeamId] = useState('');
   const [formData, setFormData] = useState({
-    teamName: 'WeRun against cancer',
-    motivation: 'We hate cancer.',
+    teamName: '',
+    motivation: '',
     type: 'business',
-    businessName: 'Wegroup NV',
+    businessName: '',
     businessPhoto: '',
-    website: 'https://wegroup.be',
-    facebook: 'https://facebook.com/wegroup.be',
+    website: '',
+    facebook: '',
     twitter: '',
   });
   const [videoData, setVideoData] = useState();
