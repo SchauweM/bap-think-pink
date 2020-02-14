@@ -13,6 +13,7 @@ const UserRadioSelect = ({
   value,
   errors,
   touched,
+  image,
 }) => (
   <StyledRadioInput>
     <StandardRadioInput
@@ -22,6 +23,7 @@ const UserRadioSelect = ({
       errors={errors[name] ? errors[name] : null}
       touched={touched[name] ? touched[name] : null}
     />
+    <img src={image} alt="Icon" />
     <p>{children}</p>
     <StyledCustomRadio />
   </StyledRadioInput>
@@ -30,13 +32,22 @@ const UserRadioSelect = ({
 const StyledRadioInput = styled.label`
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  width: 19rem;
+  justify-content: space-between;
+  width: 22rem;
   height: 5.5rem;
   cursor: pointer;
   background-color: white;
   border: 1px solid #808080; 
-  border-radius: 2px;
+  border-radius: 5px;
+
+  p{
+    margin: 1rem;
+  }
+
+
+  img{
+    margin: 1rem;
+  }
 `;
 
 const StyledCustomRadio = styled.span`
@@ -54,12 +65,13 @@ const StandardRadioInput = styled(Field)`
   height: 0px;
 
   &:checked ~ ${StyledCustomRadio} {
-    hheight: 1.6rem;
+  height: 1.6rem;
   width: 1.6rem;
   border-radius: 10px;
   margin: auto 1.6vw;
   border: 5px solid #808080;
   }
+
 `;
 
 // const UserRadioSelectContainer = styled.div`
@@ -123,6 +135,7 @@ UserRadioSelect.propTypes = {
   name: string.isRequired,
   value: string.isRequired,
   children: node.isRequired,
+  image: string.isRequired,
   // placeholder: string,
   // disabled: bool,
   // autofocus: bool,
