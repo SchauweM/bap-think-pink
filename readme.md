@@ -3,7 +3,6 @@
 ## Installation
 Installeer volgende zaken om video's te kunnen renderen.
 
-**yarn: **
 ```
 yarn add global @nexrender/server @nexrender/worker @nexrender/action-encode @nexrender/action-upload
 ```
