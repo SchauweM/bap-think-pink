@@ -86,9 +86,11 @@ const Container = styled.div`
 `;
 
 const DetailHeader = styled.div`
-  background: url('/static/global/assets/images/noise_V2.png'), #112130;
-  background-attachment: fixed;
-  background-size: 9rem, auto;
+  background: url('/static/global/assets/images/background/bush-right.png'), url('/static/global/assets/images/background/bush-left.png'), url('/static/global/assets/images/noise_V2.png'), #112130;
+  background-attachment: absolute, fixed;
+  background-repeat: no-repeat, no-repeat, repeat;
+  background-size: auto, auto, 9rem, auto;
+  background-position 100% -900%, 0% -200%;
 
   h1{
     color: white;
@@ -100,7 +102,7 @@ const DetailHeader = styled.div`
 `;
 
 const HeaderImagesWrapper = styled.div`
-  margin-top: 4rem;
+  margin-top: 10rem;
   display:flex;
   justify-content: center;
 `;
@@ -109,7 +111,7 @@ const HeaderImage = styled.img`
 `;
 
 const DetailContent = styled.div`
-  padding-top: 5rem;
+  padding: 5rem 0;
 `;
 
 const DetailContentWrapper = styled.div`

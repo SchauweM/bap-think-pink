@@ -52,9 +52,11 @@ const OverviewWrapper = styled.div`
 `;
 
 const Header = styled.div`
-  background: url('/static/global/assets/images/noise_V2.png'), #112130;
-  background-attachment: fixed;
-  background-size: 9rem, auto;
+  background: url('/static/global/assets/images/background/eyes.svg'), url('/static/global/assets/images/noise_V2.png'), #112130;
+  background-attachment: absolute, fixed;
+  background-repeat: no-repeat, repeat;
+  background-size: auto, 9rem, auto;
+  background-position 95% 100%;
 `;
 
 const Content = styled.div`
