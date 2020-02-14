@@ -1,28 +1,41 @@
 import React from 'react';
 import styled from 'styled-components';
 import { node, bool } from 'prop-types';
+import Nav from './Nav';
 
 const AuthLayout = ({ children, register }) => {
   console.log(children);
   return (
     <MainAuthLayout>
       <FormLeft>
-        <p>Logo</p>
+        <Logo href="https://www.think-pink.be/nl/" target="_blank"><img src="/static/global/assets/images/logo.png" /></Logo>
         <FormContentWrapper register={register} role="main">
           {children}
         </FormContentWrapper>
       </FormLeft>
       <FormRight>
-        Blabla
+        <NavWrap>
+          <Nav />
+        </NavWrap>
       </FormRight>
     </MainAuthLayout>
   );
 };
 
+const Logo = styled.a`
+  position: fixed;
+  margin-top: 1rem;
+`;
+
+
 const MainAuthLayout = styled.div`
   display: flex;
   width: 100vw;
   height: 100vh;
+`;
+
+const NavWrap = styled.div`
+  transform: translateX(-15rem);
 `;
 
 const FormLeft = styled.section`
@@ -35,9 +48,11 @@ const FormLeft = styled.section`
 const FormRight = styled.section`
   overflow-y: hidden;
   width: 55vw;
-  background: url('/static/global/assets/images/noise_V2.png'), #112130;
-  background-attachment: fixed;
-  background-size: 9rem, auto;
+  background: url('/static/global/assets/images/background/auth.svg'), url('/static/global/assets/images/noise_V2.png'), #112130;
+  background-attachment: absolute, fixed;
+  background-repeat: no-repeat, repeat;
+  background-size: auto, 9rem, auto;
+  background-position 50% 100%;
   mix-blend-mode: normal;
 `;
 

@@ -1,9 +1,12 @@
 import React from 'react';
 import { func, shape } from 'prop-types';
+import styled from 'styled-components';
 import loadFirebaseClient from '../../utils/firebase';
 import 'firebase/firestore';
 
+import Nav from '../../components/Layout/Nav';
 import { withTranslation } from '../../utils/i18n';
+import Tile from '../../components/Layout/Tile';
 
 const Overview = ({ t, teamData }) => {
   console.log(t);
@@ -14,11 +17,58 @@ const Overview = ({ t, teamData }) => {
 
   return (
     <>
-      <h1>Team Overzicht</h1>
-      {teamData.map((team) => <p>Hello {team.name}</p>)}
+      <OverviewWrapper>
+        <Header>
+          <Container>
+            <Nav />
+            <h1>Team Overzicht</h1>
+          </Container>
+        </Header>
+        <Content>
+          <Container>
+            <OverviewTiles>
+              <Tile />
+              <Tile />
+              <Tile />
+              <Tile />
+              <Tile />
+              <Tile />
+              <Tile />
+              <Tile />
+            </OverviewTiles>
+          </Container>
+        </Content>
+      </OverviewWrapper>
     </>
   );
 };
+
+const Container = styled.div`
+   max-width: 104rem;
+   margin: 0 auto;
+`;
+
+const OverviewWrapper = styled.div`
+`;
+
+const Header = styled.div`
+  background: url('/static/global/assets/images/background/eyes.svg'), url('/static/global/assets/images/noise_V2.png'), #112130;
+  background-attachment: absolute, fixed;
+  background-repeat: no-repeat, repeat;
+  background-size: auto, 9rem, auto;
+  background-position 95% 100%;
+`;
+
+const Content = styled.div`
+`;
+
+const OverviewTiles = styled.div`
+  background: white;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 5rem;
+`;
 
 Overview.propTypes = {
   t: func.isRequired,

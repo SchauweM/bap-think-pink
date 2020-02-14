@@ -193,9 +193,9 @@ const Home = ({ t }) => {
         <TextWrapper xPos="0" yPos="285" color="white">
           <Title>Doe mee aan de Race for the Cure!</Title>
           <Text>Scrijf je nu in via ons digitaal platform.</Text>
+          <ButtonLogin href="/auth/login">Doe mee!</ButtonLogin>
         </TextWrapper>
         <CityWrapper>
-
           <CityPeace src="static/global/assets/images/onboarding/huizen_links_voor.png" />
           <CityPeace src="static/global/assets/images/onboarding/finish.png" />
           <CityPeace src="static/global/assets/images/onboarding/huizen_rechts_voor.png" />
@@ -214,11 +214,6 @@ const wolkenLoop = keyframes`
 const leafSweep = keyframes`
  0% {transform: rotate(30deg);}
  100% {transform: rotate(0deg);}
-`;
-
-const leafSweepReverse = keyframes`
- 0% {transform: rotate(0deg);}
- 100% {transform: rotate(30deg);}
 `;
 
 const livingLeaf = keyframes`
@@ -358,7 +353,7 @@ const Title = styled.p`
 
 
 const Text = styled.p`
-text-align: center;
+  text-align: center;
   line-height: 2.2rem;
   margin-top: 1em;
 `;
@@ -370,6 +365,15 @@ const TextWrapper = styled.div`
   margin: 0 auto;
   transform: translate(0, ${(props) => props.yPos}vh)};
   z-index: 1000;
+`;
+
+const ButtonLogin = styled.a`
+    color: #192d3f;
+    background: white;
+    padding 2rem 3rem;
+    font-size: 2rem;
+    box-sizing: border-box;
+    transform: translateY(3rem);
 `;
 
 
