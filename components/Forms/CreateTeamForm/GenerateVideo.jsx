@@ -1,16 +1,31 @@
-import React, { useRef, useCallback } from 'react';
+/* eslint-disable jsx-a11y/media-has-caption */
+import React, { createRef, useState } from 'react';
 import Webcam from 'react-webcam';
 import styled from 'styled-components';
-import { string } from 'prop-types';
-import FormLayout from '../../Layout/FormLayout';
+import { string, func, shape } from 'prop-types';
+import loadFirebaseClient from '../../../utils/firebase';
+import 'firebase/firestore';
+import 'firebase/storage';
+import { useAuth } from '../../../hooks/useAuth';
+import renderVideo from '../../../utils/render';
+
+import VideoFormLayout from '../../Layout/VideoFormLayout';
 import Header from '../../Layout/Header';
+import Button from '../Inputs/Button';
+import Loader from '../../Loader';
 
-// import FormLayout from '../../Layout/FormLayout';
-// import Header from '../../Layout/Header';
 
+const GenerateVideo = ({
+  teamId, videoData, setVideoData, nextStep, formData,
+}) => {
+  const [imageData, setImageData] = useState();
+  const [btnState, setButtonState] = useState('Generate video');
+  const [btnDisabled, setButtonDisabled] = useState(true);
+  const [renderState, setRenderState] = useState(false);
 
-const GenerateVideo = ({ teamId }) => {
-  console.log('Team ID: ', teamId);
+  const { user } = useAuth();
+  const firebase = loadFirebaseClient;
+  const imageUploadRef = firebase.storage().ref(`images/${teamId}/${user.uid}/face.jpg`);
 
   const videoConstraints = {
     width: 178,
@@ -18,33 +33,143 @@ const GenerateVideo = ({ teamId }) => {
     facingMode: 'user',
   };
 
-  const webcam = useRef(null);
+  console.log('Team: ', teamId);
+  console.log('User: ', user.uid);
 
-  // const capture = useCallback(
-  //   () => {
-  //     const imageSrc = webcam.current.getScreenshot();
-  //   },
-  //   [webcam],
-  // );
+  const webcam = createRef();
+
+  const capture = () => {
+    setImageData(webcam.current.getScreenshot());
+    setButtonDisabled(false);
+  };
+
+  const resetCapture = () => {
+    setImageData();
+    setButtonDisabled(true);
+  };
+
+  const handleShowVideo = () => {
+    setRenderState(false);
+    firebase.storage()
+      .ref(`videos/${teamId}/1.mp4`)
+      .getDownloadURL()
+      .then((url) => {
+        setVideoData(url);
+      })
+      .then(() => {
+        setButtonState('Invite friends');
+      });
+  };
+
+  const handleUploadImage = (e) => {
+    e.preventDefault();
+    setButtonState('Uploading photo');
+    setButtonDisabled(true);
+    imageUploadRef.putString(imageData, 'data_url')
+      .then(() => {
+        renderVideo(teamId, user.uid, formData.teamName)
+          .then((res) => {
+            res.on('created', () => setRenderState(true));
+            res.on('finished', () => handleShowVideo());
+          });
+      });
+  };
+
+  const disableHandler = () => btnDisabled;
 
   return (
-    <FormLayout>
-      <Header
-        title="Wordt het gezicht van jouw team!"
-        text="Dit is jouw gepersonaliseerde promovideo, hier ga jij een hoofdrol spelen in het verhaal waarom jij meer teamgenoten nodig hebt. Selecteer een foto voor jouw karakter."
-      />
-      <CharacterWrapper>
-        <StyledWebcam
-          audio={false}
-          ref={webcam}
-          screenshotFormat="image/jpeg"
-          videoConstraints={videoConstraints}
-        />
-      </CharacterWrapper>
-    </FormLayout>
+    <VideoFormLayout>
+      <FormLeft>
+        <p>Logo</p>
+        <FormContentWrapper role="main">
+          <Header
+            title="Wordt het gezicht van jouw team!"
+            text="Dit is jouw gepersonaliseerde promovideo, hier ga jij een hoofdrol spelen in het verhaal waarom jij meer teamgenoten nodig hebt. Selecteer een foto voor jouw karakter."
+          />
+          <CharacterWrapper>
+            { imageData ? <StyledPreview src={imageData} />
+              : (
+                <StyledWebcam
+                  audio={false}
+                  ref={webcam}
+                  screenshotFormat="image/jpeg"
+                  videoConstraints={videoConstraints}
+                />
+              )}
+          </CharacterWrapper>
+          <ButtonContainer>
+            { !imageData ? (
+              <>
+                <Button onClick={capture}>Take a photo</Button>
+                <Button onClick={capture}>Select a photo</Button>
+              </>
+            ) : (
+              <Button onClick={resetCapture}>Take new photo</Button>
+            )}
+          </ButtonContainer>
+          <SubmitWrapper>
+            { !videoData ? (
+              <Button disabled={disableHandler()} onClick={(e) => handleUploadImage(e)}>{btnState}</Button>
+            ) : (
+              <Button onClick={() => nextStep()}>{btnState}</Button>
+            )}
+          </SubmitWrapper>
+        </FormContentWrapper>
+      </FormLeft>
+      <FormRight>
+        <VideoContainer>
+          <VideoWrapper>
+            {renderState && (
+              <>
+                <Loader />
+                <LoadingText>Bezig met video verwerken, dit kan even duren...</LoadingText>
+              </>
+            )}
+            {videoData && (
+            <video width="541" height="304" autoPlay controls>
+              <source src={videoData} type="video/mp4" />
+            </video>
+            )}
+          </VideoWrapper>
+        </VideoContainer>
+        {/* {videoData && (
+          <ButtonContainer>
+            <Button>Share on Facebook</Button>
+          </ButtonContainer>
+        )} */}
+      </FormRight>
+    </VideoFormLayout>
   );
 };
 
+const FormLeft = styled.section`
+  overflow-y: auto;
+  width: 45vw;
+  padding: 3rem;
+  background-color: white;
+`;
+
+const FormRight = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-y: hidden;
+  width: 55vw;
+  background: url('/static/global/assets/images/noise_V2.png') repeat, #112130;
+  background-attachment: fixed;
+  background-size: 9rem, auto;
+`;
+
+const FormContentWrapper = styled.main`
+  display: flex;
+  flex-direction: column;
+  justify-content: initial;
+  max-width: 45rem;
+  margin: 8rem auto 0;
+  width: 100%;
+  height: auto;
+`;
 
 const CharacterWrapper = styled.div`
   background: url('/static/global/assets/images/characters/empty_char.svg') no-repeat;
@@ -59,8 +184,58 @@ const StyledWebcam = styled(Webcam)`
   border-radius: 50%;
 `;
 
+const StyledPreview = styled.img`
+  width: 17.8rem;
+  height: 25.6rem;
+  border-radius: 50%;
+`;
+
+const ButtonContainer = styled.div`
+  margin-top: 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  & button {
+    margin-bottom: 0;
+  }
+`;
+
+const SubmitWrapper = styled.div`
+  margin-top: 2.8rem;
+  display: flex;
+  justify-content: flex-end;
+`;
+
+const VideoContainer = styled.div`
+  background: url('/static/global/assets/images/characters/video-bg.svg') no-repeat;
+  max-width: 54.1rem;
+  max-height: 44.1rem;
+  width: 100%;
+  height: 100%;
+`;
+
+const VideoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 54.1rem;
+  height: 30.4rem;
+`;
+
+const LoadingText = styled.p`
+  margin-top: 1.6rem;
+  font-size: 1.8rem;
+  color: white;
+`;
+
 GenerateVideo.propTypes = {
   teamId: string.isRequired,
+  formData: shape({}).isRequired,
+  nextStep: func.isRequired,
+  videoData: string.isRequired,
+  setVideoData: func.isRequired,
 };
 
 export default GenerateVideo;
