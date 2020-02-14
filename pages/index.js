@@ -271,7 +271,7 @@ const BushRWrapper = styled.div`
 
 const LeafLAnim = styled.div`
   position: absolute;
-  transform: translate(${(props) => props.translateX}rem, ${(props) => props.translateY}rem)};
+  transform: translate(${(props) => props.translateX}rem, ${(props) => props.translateY}rem);
   position: absolute;
   .sweep{
     
@@ -368,7 +368,7 @@ const TextWrapper = styled.div`
   color: ${(props) => props.color};
   width: ${(props) => props.long ? '60rem' : '40rem'};
   margin: 0 auto;
-  transform: translate(0, ${(props) => props.yPos}vh)};
+  transform: translate(0, ${(props) => props.yPos}vh);
   z-index: 1000;
 `;
 
