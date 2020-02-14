@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import styled from 'styled-components';
-import { string, func, shape } from 'prop-types';
+import { string, func } from 'prop-types';
 
 import VideoFormLayout from '../../Layout/VideoFormLayout';
 import Header from '../../Layout/Header';
@@ -11,7 +11,7 @@ import UserInput from '../Inputs/UserInput';
 import SubmitButton from '../Inputs/SubmitButton';
 
 const InviteForm = ({
-  teamId, videoData, nextStep, formData,
+  teamId, videoData, nextStep,
 }) => {
   console.log('Team: ', teamId);
 
@@ -33,6 +33,10 @@ const InviteForm = ({
     return true;
   };
 
+  const handleSubmit = () => {
+    nextStep();
+  };
+
   return (
     <VideoFormLayout>
       <FormLeft>
@@ -43,11 +47,12 @@ const InviteForm = ({
             text="Deze video dient als uitnodiging om mee te doen aan jou team! Als je teamleden toevoegt zullen ze per mail een uitnodiging krijgen."
           />
           <Formik
-            initialValues={formData}
+            initialValues={{
+              email_1: '',
+            }}
             validationSchema={EmailSchema}
             onSubmit={(values) => {
-              console.log(values);
-              nextStep();
+              handleSubmit(values);
             }}
           >
             {({ errors, touched }) => {
@@ -174,7 +179,6 @@ const AddInputButton = styled.button`
 
 InviteForm.propTypes = {
   teamId: string.isRequired,
-  formData: shape({}).isRequired,
   nextStep: func.isRequired,
   videoData: string.isRequired,
 };

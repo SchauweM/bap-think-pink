@@ -16,7 +16,7 @@ import { withTranslation } from '../../utils/i18n';
 const Create = ({ t }) => {
   console.log(t);
   const auth = useRequireAuth();
-  const [currentStep, setCurrentStep] = useState(6);
+  const [currentStep, setCurrentStep] = useState(5);
   const [teamId, setTeamId] = useState('qz0dbcEvIBS7mMad74hI');
   const [formData, setFormData] = useState({
     teamName: 'WeRun against cancer',
