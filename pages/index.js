@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { func } from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 import { Controller, Scene } from 'react-scrollmagic';
@@ -80,7 +81,7 @@ const Home = ({ t }) => {
             </Scene>
           </Controller> */}
             <Controller>
-              <Scene classToggle={['.test', 'sweep']} triggerElement="#leafTrigger" reverse={false} indicators>
+              <Scene classToggle={['.test', 'sweep']} triggerElement="#leafTrigger" reverse={false}>
                 <>
                   <LeafLAnim translateX="15" translateY="57">
                     <LeafL className="test" duration=".85s" src="static/global/assets/images/onboarding/leaf11L.png" />
@@ -133,7 +134,7 @@ const Home = ({ t }) => {
             </Scene>
           </Controller> */}
             <Controller>
-              <Scene classToggle={['.test', 'sweep']} duration={2000} triggerElement="#leafTrigger" reverse indicators>
+              <Scene classToggle={['.test', 'sweep']} duration={2000} triggerElement="#leafTrigger" reverse>
                 <>
                   <LeafTrigger id="leafTrigger" />
                   <LeafLAnim translateX="15" translateY="53">
@@ -185,15 +186,19 @@ const Home = ({ t }) => {
             <Text>Sommige reizen denken we alleen te moeten doorstaan, maar dit is niet het geval. Race for the Cure is hier om het tegendeel te bewijzen. </Text>
           </TextWrapper>
         </IceWrapperVoor>
-        <TextWrapper xPos="-10" yPos="280" color="white">
+        <TextWrapper long xPos="-10" yPos="280" color="white">
           <Title>Samen staan we sterk</Title>
-          <Text>Loop samen met vrienden en familie de race om, aan te tonen dat mensen deze reis niet alleen moeten trotseren. Steun Think-Pink en steek jouw lotgenoten een hart onder de riem.</Text>
+          <Text>Loop samen met vrienden, familie of collega&apos;s de race om aan te tonen dat mensen deze reis niet alleen moeten trotseren. Steun Think-Pink en steek jouw lotgenoten een hart onder de riem.</Text>
         </TextWrapper>
 
-        <TextWrapper xPos="0" yPos="285" color="white">
+        <TextWrapper long xPos="0" yPos="285" color="white">
           <Title>Doe mee aan de Race for the Cure!</Title>
           <Text>Scrijf je nu in via ons digitaal platform.</Text>
-          <ButtonLogin href="/auth/login">Doe mee!</ButtonLogin>
+          <ButtonWrapper>
+            <Link href="/auth/login">
+              <ButtonLogin href="/auth/login">Doe mee!</ButtonLogin>
+            </Link>
+          </ButtonWrapper>
         </TextWrapper>
         <CityWrapper>
           <CityPeace src="static/global/assets/images/onboarding/huizen_links_voor.png" />
@@ -361,21 +366,31 @@ const Text = styled.p`
 const TextWrapper = styled.div`
   text-align: center;
   color: ${(props) => props.color};
-  width: 40rem;
+  width: ${(props) => props.long ? '60rem' : '40rem'};
   margin: 0 auto;
   transform: translate(0, ${(props) => props.yPos}vh)};
   z-index: 1000;
 `;
 
+const ButtonWrapper = styled.div`
+  margin-top: 6rem;
+`;
+
 const ButtonLogin = styled.a`
     color: #192d3f;
     background: white;
-    padding 2rem 3rem;
+    padding: 1.5rem 2.5rem 1.2rem;
     font-size: 2rem;
     box-sizing: border-box;
-    transform: translateY(3rem);
-`;
+    border-radius: .5rem;
+    transition: all .2s linear;
 
+    &:hover {
+      color: white;
+      text-decoration: none;
+      background-color: #112130;
+    }
+`;
 
 // inser javascript
 

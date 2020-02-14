@@ -8,7 +8,7 @@ const AuthLayout = ({ children, register }) => {
   return (
     <MainAuthLayout>
       <FormLeft>
-        <Logo href="https://www.think-pink.be/nl/" target="_blank"><img src="/static/global/assets/images/logo.png" /></Logo>
+        <Logo href="https://www.think-pink.be/nl/" target="_blank"><img src="/static/global/assets/images/logo.png" alt="Think Pink" /></Logo>
         <FormContentWrapper register={register} role="main">
           {children}
         </FormContentWrapper>
@@ -52,7 +52,7 @@ const FormRight = styled.section`
   background-attachment: absolute, fixed;
   background-repeat: no-repeat, repeat;
   background-size: auto, 9rem, auto;
-  background-position 50% 100%;
+  background-position: 50% 100%;
   mix-blend-mode: normal;
 `;
 

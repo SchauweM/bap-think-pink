@@ -1,19 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 import { node } from 'prop-types';
+import Nav from './Nav';
 
 const FormLayout = ({ children }) => {
   console.log(children);
   return (
     <MainFormLayout>
       <FormLeft>
-        <a href="https://www.think-pink.be/nl/" target="_blank"><img src="/static/global/assets/images/logo.png" /></a>
+        <img src="/static/global/assets/images/logo.png" alt="Think Pink" />
         <FormContentWrapper role="main">
           {children}
         </FormContentWrapper>
       </FormLeft>
       <FormRight>
-        Blabla
+        <NavWrap>
+          <Nav />
+        </NavWrap>
       </FormRight>
     </MainFormLayout>
   );
@@ -35,9 +38,10 @@ const FormLeft = styled.section`
 const FormRight = styled.section`
   overflow-y: hidden;
   width: 55vw;
-  background: url('/static/global/assets/images/noise_V2.png') repeat, #112130;
-  background-attachment: fixed;
-  background-size: 9rem, auto;
+  background: url('/static/global/assets/images/background/huis.png') bottom right, url('/static/global/assets/images/noise_V2.png'), #112130;
+  background-repeat: no-repeat, repeat;
+  background-size: 65%, auto;
+  mix-blend-mode: normal;
 `;
 
 const FormContentWrapper = styled.main`
@@ -48,6 +52,10 @@ const FormContentWrapper = styled.main`
   margin: 8rem auto 0;
   width: 100%;
   height: auto;
+`;
+
+const NavWrap = styled.div`
+  transform: translateX(-15rem);
 `;
 
 FormLayout.propTypes = {
