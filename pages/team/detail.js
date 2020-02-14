@@ -21,7 +21,7 @@ const Detail = ({ t, teamData }) => {
       <DetailHeader>
         <Container>
           <Nav />
-          <h1>Welkom bij, (TEAM_NAME)!</h1>
+          <h1>Welkom bij, BAP tegen kanker!</h1>
           <HeaderImagesWrapper>
             <HeaderImage src="/static/global/assets/images/characters/detail-header/4.svg" />
             <HeaderImage src="/static/global/assets/images/characters/detail-header/5.svg" />
@@ -56,7 +56,7 @@ const Detail = ({ t, teamData }) => {
                 </ButtonWrapper>
               </DonateSelectionWrapper>
               <DonationsWrapper>
-                <DonationsTitle>(TEAM_NAME) zou graag de 25 doneurs
+                <DonationsTitle>BAP tegen kanker zou graag de 25 doneurs
                   hartelijk willen bedanken!
                 </DonationsTitle>
                 <DonationsTile>

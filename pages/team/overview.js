@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { func, shape } from 'prop-types';
 import styled from 'styled-components';
 import loadFirebaseClient from '../../utils/firebase';
@@ -21,20 +22,17 @@ const Overview = ({ t, teamData }) => {
         <Header>
           <Container>
             <Nav />
-            <h1>Team Overzicht</h1>
+            <StyledHeader>Team Overzicht</StyledHeader>
           </Container>
         </Header>
         <Content>
           <Container>
             <OverviewTiles>
-              <Tile />
-              <Tile />
-              <Tile />
-              <Tile />
-              <Tile />
-              <Tile />
-              <Tile />
-              <Tile />
+              <Link href="/team/detail">
+                <a>
+                  <Tile />
+                </a>
+              </Link>
             </OverviewTiles>
           </Container>
         </Content>
@@ -42,6 +40,13 @@ const Overview = ({ t, teamData }) => {
     </>
   );
 };
+
+const StyledHeader = styled.h1`
+  color: white;
+  text-align: center;
+  font-size: 3.1rem;
+  font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+`;
 
 const Container = styled.div`
    max-width: 104rem;
@@ -56,7 +61,8 @@ const Header = styled.div`
   background-attachment: absolute, fixed;
   background-repeat: no-repeat, repeat;
   background-size: auto, 9rem, auto;
-  background-position 95% 100%;
+  background-position: 95% 100%;
+  padding-bottom: 6rem;
 `;
 
 const Content = styled.div`
@@ -84,6 +90,7 @@ Overview.getInitialProps = async () => {
       (snapshot) => {
         const data = [];
         snapshot.forEach((doc) => {
+          console.log(('DOC: ', doc));
           // data[doc.id] = doc.data();
           data.push({ id: doc.id, ...doc.data() });
           console.log('Data: ', data);
