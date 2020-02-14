@@ -45,9 +45,14 @@ const Login = ({ t }) => {
   if (auth.user) {
     setTimeout(() => {
       Router.push('/team/create');
-    }, 5000);
+    }, 3000);
     return (
-      <p>You&apos;re signed in - redirecting you.</p>
+      <AuthLayout>
+        <Header
+          title="You're signed in."
+          text="We're redirecting you."
+        />
+      </AuthLayout>
     );
   }
 

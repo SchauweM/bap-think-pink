@@ -7,6 +7,8 @@ import TeamNameForm from '../../components/Forms/CreateTeamForm/TeamNameForm';
 import TeamDetailForm from '../../components/Forms/CreateTeamForm/TeamDetailForm';
 import CheckFormData from '../../components/Forms/CreateTeamForm/CheckFormData';
 import GenerateVideo from '../../components/Forms/CreateTeamForm/GenerateVideo';
+import InviteForm from '../../components/Forms/CreateTeamForm/InviteForm';
+import Success from '../../components/Forms/CreateTeamForm/Success';
 
 import { withTranslation } from '../../utils/i18n';
 
@@ -14,18 +16,19 @@ import { withTranslation } from '../../utils/i18n';
 const Create = ({ t }) => {
   console.log(t);
   const auth = useRequireAuth();
-  const [currentStep, setCurrentStep] = useState(2);
-  const [teamId, setTeamId] = useState('qz0dbcEvIBS7mMad74hI');
+  const [currentStep, setCurrentStep] = useState(1);
+  const [teamId, setTeamId] = useState('');
   const [formData, setFormData] = useState({
-    teamName: 'WeRun against cancer',
-    motivation: 'We hate cancer.',
+    teamName: '',
+    motivation: '',
     type: 'business',
-    businessName: 'Wegroup NV',
+    businessName: '',
     businessPhoto: '',
-    website: 'https://wegroup.be',
-    facebook: 'https://facebook.com/wegroup.be',
+    website: '',
+    facebook: '',
     twitter: '',
   });
+  const [videoData, setVideoData] = useState();
 
   const nextStep = () => {
     setCurrentStep(currentStep + 1);
@@ -72,6 +75,25 @@ const Create = ({ t }) => {
       return (
         <GenerateVideo
           teamId={teamId}
+          formData={formData}
+          videoData={videoData}
+          setVideoData={setVideoData}
+          nextStep={nextStep}
+        />
+      );
+    case 5:
+      return (
+        <InviteForm
+          teamId={teamId}
+          videoData={videoData}
+          nextStep={nextStep}
+        />
+      );
+    case 6:
+      return (
+        <Success
+          teamId={teamId}
+          videoData={videoData}
         />
       );
     default:
