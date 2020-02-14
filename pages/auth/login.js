@@ -99,39 +99,37 @@ const Login = ({ t }) => {
       </Formik>
       <SocialLoginWrapper>
         <Or>Of gebruik</Or>
-        <Button onClick={() => auth.signinWithGoogle()}>Aanmelden met Google</Button>
-        <Button onClick={() => auth.signinWithFacebook()}>Aanmelden met Facebook</Button>
+        <div>
+          <Button onClick={() => auth.signinWithGoogle()}>Aanmelden met Google</Button>
+          <Button onClick={() => auth.signinWithFacebook()}>Aanmelden met Facebook</Button>
+        </div>
       </SocialLoginWrapper>
     </AuthLayout>
   );
 };
 
 const SocialLoginWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   margin-top: 3.6rem;
+  button{
+    margin: 2rem auto 0;
+    width: 25rem;
+  }
 `;
 
 const Or = styled.p`
-  text-align: center;
-  margin-bottom: 3.6rem;
-
-  &::before {
-    display: inline-block;
-    content: "";
-    border-top: .1rem solid black;
-    width: 30%;
-    margin-right: 1rem;
-    transform: translateY(-.5rem);
-  }
-
+  text-align: left;
   &::after {
     display: inline-block;
     content: "";
     border-top: .1rem solid black;
-    width: 30%;
-    margin-left: 1rem;
+    width: 41%;
+    transform: translateY(-.5rem);
+  }
+  &::before {
+    display: inline-block;
+    content: "";
+    border-top: .1rem solid black;
+    width: 41%;
     transform: translateY(-.5rem);
   }
 `;

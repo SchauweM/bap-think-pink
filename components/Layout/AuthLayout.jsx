@@ -12,9 +12,7 @@ const AuthLayout = ({ children, register }) => {
           {children}
         </FormContentWrapper>
       </FormLeft>
-      <FormRight>
-        Blabla
-      </FormRight>
+      <FormRight />
     </MainAuthLayout>
   );
 };
@@ -35,9 +33,11 @@ const FormLeft = styled.section`
 const FormRight = styled.section`
   overflow-y: hidden;
   width: 55vw;
-  background: url('/static/global/assets/images/noise_V2.png'), #112130;
-  background-attachment: fixed;
-  background-size: 9rem, auto;
+  background: url('/static/global/assets/images/background/auth.svg'), url('/static/global/assets/images/noise_V2.png'), #112130;
+  background-attachment: absolute, fixed;
+  background-repeat: no-repeat, repeat;
+  background-size: auto, 9rem, auto;
+  background-position 50% 100%;
   mix-blend-mode: normal;
 `;
 
