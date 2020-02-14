@@ -74,7 +74,32 @@ const CheckFormData = ({
         title="Controleer nog even jouw gegevens!"
         text="Indien er iets niet klopt kan je naar een vorige stap gaan om deze te wijzigen. Je kan deze gegevens later ook nog steeds aanpassen via jouw team pagina."
       />
-      <p>{formData.teamName}</p>
+      <ReturnRow>
+        <StyledReturn>
+          <StyledLabel>Teamnaam</StyledLabel>
+          <StyledValue>{formData.teamName}</StyledValue>
+        </StyledReturn>
+        <StyledReturn>
+          <StyledLabel>Naam bedrijf of vereniging</StyledLabel>
+          <StyledValue>{formData.businessName}</StyledValue>
+        </StyledReturn>
+      </ReturnRow>
+      <ReturnRow>
+        <StyledReturn>
+          <StyledLabel>Website</StyledLabel>
+          <StyledValue>{formData.website}</StyledValue>
+        </StyledReturn>
+        <StyledReturn>
+          <StyledLabel>Facebook</StyledLabel>
+          <StyledValue>{formData.facebook}</StyledValue>
+        </StyledReturn>
+      </ReturnRow>
+      <ReturnRow full>
+        <StyledReturn full>
+          <StyledLabel>Motivatie</StyledLabel>
+          <StyledValue>{formData.motivation}</StyledValue>
+        </StyledReturn>
+      </ReturnRow>
       {/* {
         formData.forEach((data) => {
           return <p>{data}</p>;
@@ -92,6 +117,24 @@ const ButtonWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+`;
+
+const ReturnRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+`;
+
+const StyledReturn = styled.div`
+  width: ${(props) => props.full ? '100%' : '45%'};
+`;
+
+const StyledLabel = styled.p`
+  font-size: 1.4rem;
+`;
+
+const StyledValue = styled.p`
+  font-weight: 500;
 `;
 
 CheckFormData.propTypes = {

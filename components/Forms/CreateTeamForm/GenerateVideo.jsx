@@ -80,7 +80,7 @@ const GenerateVideo = ({
   return (
     <VideoFormLayout>
       <FormLeft>
-        <p>Logo</p>
+        <img src="/static/global/assets/images/logo.png" alt="Think Pink" />
         <FormContentWrapper role="main">
           <Header
             title="Wordt het gezicht van jouw team!"
@@ -94,6 +94,7 @@ const GenerateVideo = ({
                   ref={webcam}
                   screenshotFormat="image/jpeg"
                   videoConstraints={videoConstraints}
+                  mirrored
                 />
               )}
           </CharacterWrapper>
