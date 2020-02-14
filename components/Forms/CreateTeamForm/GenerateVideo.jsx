@@ -2,7 +2,7 @@
 import React, { createRef, useState } from 'react';
 import Webcam from 'react-webcam';
 import styled from 'styled-components';
-import { string, func } from 'prop-types';
+import { string, func, shape } from 'prop-types';
 import loadFirebaseClient from '../../../utils/firebase';
 import 'firebase/firestore';
 import 'firebase/storage';
@@ -16,7 +16,7 @@ import Loader from '../../Loader';
 
 
 const GenerateVideo = ({
-  teamId, videoData, setVideoData, nextStep,
+  teamId, videoData, setVideoData, nextStep, formData,
 }) => {
   const [imageData, setImageData] = useState();
   const [btnState, setButtonState] = useState('Generate video');
@@ -67,7 +67,7 @@ const GenerateVideo = ({
     setButtonDisabled(true);
     imageUploadRef.putString(imageData, 'data_url')
       .then(() => {
-        renderVideo(teamId, user.uid)
+        renderVideo(teamId, user.uid, formData.teamName)
           .then((res) => {
             res.on('created', () => setRenderState(true));
             res.on('finished', () => handleShowVideo());
@@ -232,6 +232,7 @@ const LoadingText = styled.p`
 
 GenerateVideo.propTypes = {
   teamId: string.isRequired,
+  formData: shape({}).isRequired,
   nextStep: func.isRequired,
   videoData: string.isRequired,
   setVideoData: func.isRequired,

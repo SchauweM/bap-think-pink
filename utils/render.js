@@ -6,17 +6,23 @@ const client = createClient({
 });
 
 // eslint-disable-next-line consistent-return
-async function renderVideo(group, user) {
+async function renderVideo(group, user, name) {
   const result = await client.addJob({
     template: {
       src: 'http://localhost:3000/static/global/assets/render_templates/Render1/render1.aep',
-      composition: 'main',
+      composition: '1',
     },
     assets: [
       {
         src: `gs://rftc-thinkpink.appspot.com/images/${group}/${user}/face.jpg`,
         type: 'image',
-        layerName: 'face.png',
+        layerName: 'face',
+      },
+      {
+        type: 'data',
+        layerName: 'Teamnaam',
+        property: 'Source Text',
+        value: name,
       },
     ],
     actions: {
