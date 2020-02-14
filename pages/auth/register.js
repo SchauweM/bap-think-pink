@@ -54,7 +54,12 @@ const Register = ({ t }) => {
       Router.push('/team/overview');
     }, 5000);
     return (
-      <p>You&apos;re already signed in - redirecting you.</p>
+      <AuthLayout>
+        <Header
+          title="You're signed in."
+          text="We're redirecting you."
+        />
+      </AuthLayout>
     );
   }
 
