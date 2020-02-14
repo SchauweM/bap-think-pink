@@ -27,7 +27,6 @@ const Btn = styled.button`
   border-radius: .5rem;
   border: none;
   transition: all .2s linear;
-  margin-bottom: 1.6rem;
 
   &:last-of-type {
     margin-bottom: 0;

@@ -216,11 +216,6 @@ const leafSweep = keyframes`
  100% {transform: rotate(0deg);}
 `;
 
-const leafSweepReverse = keyframes`
- 0% {transform: rotate(0deg);}
- 100% {transform: rotate(30deg);}
-`;
-
 const livingLeaf = keyframes`
  0% {transform: rotate(0);}
  100% {transform: rotate(-3deg);}

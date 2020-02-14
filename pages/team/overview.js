@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import loadFirebaseClient from '../../utils/firebase';
 import 'firebase/firestore';
 
+import Nav from '../../components/Layout/Nav';
 import { withTranslation } from '../../utils/i18n';
 import Tile from '../../components/Layout/Tile';
 
@@ -19,6 +20,7 @@ const Overview = ({ t, teamData }) => {
       <OverviewWrapper>
         <Header>
           <Container>
+            <Nav />
             <h1>Team Overzicht</h1>
           </Container>
         </Header>
@@ -47,7 +49,6 @@ const Container = styled.div`
 `;
 
 const OverviewWrapper = styled.div`
- 
 `;
 
 const Header = styled.div`
@@ -64,6 +65,7 @@ const OverviewTiles = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  margin-top: 5rem;
 `;
 
 Overview.propTypes = {

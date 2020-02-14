@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { string, bool, func } from 'prop-types';
+import { string, func } from 'prop-types';
 import Goal from '../Teams/Goal';
 
 const Tile = (props) => {
@@ -30,7 +30,6 @@ const TileWrapper = styled.div`
   width: 23rem;
   padding: 1rem;
   margin: 1.25rem;
-  color: #112130;
   border-radius: 0.3rem;
 
   flex-direction: column;
@@ -55,6 +54,7 @@ const Title = styled.p`
   font-size: 1.8rem;
   min-height: 7rem;
   margin-bottom: 1rem;
+  color: #112130;
 `;
 
 const Thumb = styled.img`
@@ -79,10 +79,6 @@ const Icon = styled.img`
 Tile.propTypes = {
   children: string.isRequired,
   onClick: func.isRequired,
-};
-
-Tile.defaultProps = {
-  disabled: false,
 };
 
 export default Tile;
