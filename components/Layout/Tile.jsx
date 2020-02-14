@@ -1,12 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
-import { string } from 'prop-types';
+import { string, func } from 'prop-types';
 import Goal from '../Teams/Goal';
 
-const Tile = ({ name }) => {
+const Tile = (props) => {
+  const {
+    children,
+    onClick,
+  } = props;
   return (
     <TileWrapper>
-      <Title>{name}</Title>
+      <Title>BAP tegen kanker</Title>
       <Thumb src="/static/global/assets/images/characters/thumb_overview.svg" />
       <Goal />
       <StatsWrapper>
@@ -72,7 +76,8 @@ const Icon = styled.img`
 `;
 
 Tile.propTypes = {
-  name: string.isRequired,
+  children: string.isRequired,
+  onClick: func.isRequired,
 };
 
 export default Tile;

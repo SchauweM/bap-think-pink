@@ -11,7 +11,7 @@ const Home = ({ t }) => {
   return (
     <ContainerWrapper>
       <Container>
-        <SkySection>
+        <Deel1>
           <WolkWrapper>
             <Wolk
               src="static/global/assets/images/onboarding/wolk2.png"
@@ -70,8 +70,8 @@ const Home = ({ t }) => {
               duration="190s"
             />
           </WolkWrapper>
-        </SkySection>
-        <BushSection>
+        </Deel1>
+        <BushWrapper>
           <BushLWrapper>
             {/* <Controller>
             <Scene duration={600} classToggle="sweep" triggerElement=".leafLAnim" indicators>
@@ -174,7 +174,7 @@ const Home = ({ t }) => {
               </Scene>
             </Controller>
           </BushRWrapper>
-        </BushSection>
+        </BushWrapper>
         <IceWrapperAchter>
           <IceBackground yPos="-15" src="static/global/assets/images/onboarding/sterren.png" />
           <IceBackground yPos="10" src="static/global/assets/images/onboarding/achterkant-ice.png" />
@@ -231,7 +231,7 @@ const LeafTrigger = styled.div`
 `;
 
 
-const SkySection = styled.div`
+const Deel1 = styled.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -250,7 +250,7 @@ const Wolk = styled.img`
   position: absolute;
 `;
 
-const BushSection = styled.div`
+const BushWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;

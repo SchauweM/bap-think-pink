@@ -30,9 +30,7 @@ const Overview = ({ t, teamData }) => {
             <OverviewTiles>
               <Link href="/team/detail">
                 <a>
-                  <Tile
-                    name="BAP tegen kanker"
-                  />
+                  <Tile />
                 </a>
               </Link>
             </OverviewTiles>

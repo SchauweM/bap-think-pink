@@ -11,7 +11,7 @@ import Header from '../../Layout/Header';
 const Success = ({ teamId, videoData }) => {
   console.log('Team: ', teamId);
 
-  const teamPageLink = `/team/detail`;
+  const teamPageLink = `/team/detail/${teamId}`;
 
   return (
     <VideoFormLayout>

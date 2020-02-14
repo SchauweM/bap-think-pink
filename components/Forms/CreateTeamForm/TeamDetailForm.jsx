@@ -63,30 +63,26 @@ const TeamDetailForm = ({
           const disabled = disableHandler(errors);
           return (
             <Form>
-              <RadioWrapper>
-                <RadioSelectContainer>
-                  <UserRadioSelect
-                    errors={errors}
-                    touched={touched}
-                    image="/static/global/assets/images/icons/support/familie.svg"
-                    name="type"
-                    id="family"
-                    value="family"
-                  >
-                    Familie en vrienden
-                  </UserRadioSelect>
-                  <UserRadioSelect
-                    errors={errors}
-                    touched={touched}
-                    image="/static/global/assets/images/icons/support/bedrijf.svg"
-                    name="type"
-                    id="business"
-                    value="business"
-                  >
-                    Bedrijf of organisatie
-                  </UserRadioSelect>
-                </RadioSelectContainer>
-              </RadioWrapper>
+              <RadioSelectContainer>
+                <UserRadioSelect
+                  errors={errors}
+                  touched={touched}
+                  name="type"
+                  id="family"
+                  value="family"
+                >
+                  Familie en vrienden
+                </UserRadioSelect>
+                <UserRadioSelect
+                  errors={errors}
+                  touched={touched}
+                  name="type"
+                  id="business"
+                  value="business"
+                >
+                  Bedrijf of organisatie
+                </UserRadioSelect>
+              </RadioSelectContainer>
               <ErrorContainer>
                 <ErrorMss name="type" component="p" />
               </ErrorContainer>
@@ -140,14 +136,6 @@ const TeamDetailForm = ({
 
 const RadioSelectContainer = styled.div`
   display: flex;
-  justify-content: space-between;
-  width: 100%;
-`;
-
-const RadioWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 2rem;
 `;
 
 const ErrorContainer = styled.div`

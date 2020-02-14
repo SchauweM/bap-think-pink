@@ -1,4 +1,5 @@
 import React from 'react';
+import { func, shape } from 'prop-types';
 import styled from 'styled-components';
 import loadFirebaseClient from '../../utils/firebase';
 import 'firebase/firestore';
@@ -120,6 +121,11 @@ const ContentText = styled.p`
 const Content = styled.div`
   background: white;
 `;
+
+About.propTypes = {
+  t: func.isRequired,
+  teamData: shape({}).isRequired,
+};
 
 About.getInitialProps = async () => {
   const firebase = loadFirebaseClient;

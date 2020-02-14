@@ -104,10 +104,10 @@ const Login = ({ t }) => {
       </Formik>
       <SocialLoginWrapper>
         <Or>Of gebruik</Or>
-        <>
+        <div>
           <Button onClick={() => auth.signinWithGoogle()}>Aanmelden met Google</Button>
           <Button onClick={() => auth.signinWithFacebook()}>Aanmelden met Facebook</Button>
-        </>
+        </div>
       </SocialLoginWrapper>
     </AuthLayout>
   );
