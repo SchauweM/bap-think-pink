@@ -7,7 +7,7 @@ const FormLayout = ({ children }) => {
   return (
     <MainFormLayout>
       <FormLeft>
-        <p>Logo</p>
+        <a href="https://www.think-pink.be/nl/" target="_blank"><img src="/static/global/assets/images/logo.png" /></a>
         <FormContentWrapper role="main">
           {children}
         </FormContentWrapper>

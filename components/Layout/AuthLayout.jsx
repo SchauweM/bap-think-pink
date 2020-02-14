@@ -1,26 +1,41 @@
 import React from 'react';
 import styled from 'styled-components';
 import { node, bool } from 'prop-types';
+import Nav from './Nav';
 
 const AuthLayout = ({ children, register }) => {
   console.log(children);
   return (
     <MainAuthLayout>
       <FormLeft>
-        <p>Logo</p>
+        <Logo href="https://www.think-pink.be/nl/" target="_blank"><img src="/static/global/assets/images/logo.png" /></Logo>
         <FormContentWrapper register={register} role="main">
           {children}
         </FormContentWrapper>
       </FormLeft>
-      <FormRight />
+      <FormRight>
+        <NavWrap>
+          <Nav />
+        </NavWrap>
+      </FormRight>
     </MainAuthLayout>
   );
 };
+
+const Logo = styled.a`
+  position: fixed;
+  margin-top: 1rem;
+`;
+
 
 const MainAuthLayout = styled.div`
   display: flex;
   width: 100vw;
   height: 100vh;
+`;
+
+const NavWrap = styled.div`
+  transform: translateX(-15rem);
 `;
 
 const FormLeft = styled.section`
