@@ -1,13 +1,14 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
+/* eslint-disable react/jsx-no-target-blank */
+/* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
 import styled from 'styled-components';
-import { string } from 'prop-types';
 
 const Nav = () => (
   <>
-
     <NavWrapper>
       <LinkWrapper>
-        <Link> <a href="https://www.think-pink.be/nl/" target="_blank"><img src="/static/global/assets/images/logo.png" /></a></Link>
+        <Link><a href="https://www.think-pink.be/nl/" target="_blank"><img src="/static/global/assets/images/logo.png" /></a></Link>
         <Link><a href="/team/about">Over Race for the Cure</a></Link>
         <Link><a href="/team/overview">Team overzicht</a></Link>
       </LinkWrapper>
@@ -16,7 +17,7 @@ const Nav = () => (
 );
 
 const NavWrapper = styled.nav`
-  padding-top:5rem;
+  padding-top:3rem;
   margin-bottom: 5rem;
 `;
 
