@@ -7,6 +7,7 @@ import TeamNameForm from '../../components/Forms/CreateTeamForm/TeamNameForm';
 import TeamDetailForm from '../../components/Forms/CreateTeamForm/TeamDetailForm';
 import CheckFormData from '../../components/Forms/CreateTeamForm/CheckFormData';
 import GenerateVideo from '../../components/Forms/CreateTeamForm/GenerateVideo';
+import InviteForm from '../../components/Forms/CreateTeamForm/InviteForm';
 
 import { withTranslation } from '../../utils/i18n';
 
@@ -26,6 +27,7 @@ const Create = ({ t }) => {
     facebook: 'https://facebook.com/wegroup.be',
     twitter: '',
   });
+  const [videoData, setVideoData] = useState();
 
   const nextStep = () => {
     setCurrentStep(currentStep + 1);
@@ -72,6 +74,18 @@ const Create = ({ t }) => {
       return (
         <GenerateVideo
           teamId={teamId}
+          formData={formData}
+          videoData={videoData}
+          setVideoData={setVideoData}
+          nextStep={nextStep}
+        />
+      );
+    case 5:
+      return (
+        <InviteForm
+          teamId={teamId}
+          videoData={videoData}
+          nextStep={nextStep}
         />
       );
     default:

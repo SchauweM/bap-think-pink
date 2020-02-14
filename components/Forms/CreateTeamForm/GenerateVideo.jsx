@@ -2,7 +2,7 @@
 import React, { createRef, useState } from 'react';
 import Webcam from 'react-webcam';
 import styled from 'styled-components';
-import { string } from 'prop-types';
+import { string, func } from 'prop-types';
 import loadFirebaseClient from '../../../utils/firebase';
 import 'firebase/firestore';
 import 'firebase/storage';
@@ -15,18 +15,17 @@ import Button from '../Inputs/Button';
 import Loader from '../../Loader';
 
 
-const GenerateVideo = ({ teamId }) => {
+const GenerateVideo = ({
+  teamId, videoData, setVideoData, nextStep,
+}) => {
   const [imageData, setImageData] = useState();
   const [btnState, setButtonState] = useState('Generate video');
   const [btnDisabled, setButtonDisabled] = useState(true);
   const [renderState, setRenderState] = useState(false);
-  const [videoData, setVideoData] = useState();
 
   const { user } = useAuth();
   const firebase = loadFirebaseClient;
   const imageUploadRef = firebase.storage().ref(`images/${teamId}/${user.uid}/face.jpg`);
-  // const imageRef = storageRef.child('face.png');
-  // const imagesRef = storageRef.cild(`${teamId}/${user.uid}/face.png`);
 
   const videoConstraints = {
     width: 178,
@@ -56,6 +55,9 @@ const GenerateVideo = ({ teamId }) => {
       .getDownloadURL()
       .then((url) => {
         setVideoData(url);
+      })
+      .then(() => {
+        setButtonState('Invite friends');
       });
   };
 
@@ -71,15 +73,6 @@ const GenerateVideo = ({ teamId }) => {
             res.on('finished', () => handleShowVideo());
           });
       });
-
-    // imageUploadRef.putString(imageData, 'data_url')
-    //   .then((snapshot) => {
-    //     snapshot.ref.getDownloadURL()
-    //       .then((getDownloadURL) => {
-    //         console.log(getDownloadURL);
-    //         renderVideo(getDownloadURL, teamId);
-    //       });
-    //   });
   };
 
   const disableHandler = () => btnDisabled;
@@ -107,7 +100,7 @@ const GenerateVideo = ({ teamId }) => {
           <ButtonContainer>
             { !imageData ? (
               <>
-                <Button onClick={capture}>Capture photo</Button>
+                <Button onClick={capture}>Take a photo</Button>
                 <Button onClick={capture}>Select a photo</Button>
               </>
             ) : (
@@ -115,7 +108,11 @@ const GenerateVideo = ({ teamId }) => {
             )}
           </ButtonContainer>
           <SubmitWrapper>
-            <Button disabled={disableHandler()} onClick={(e) => handleUploadImage(e)}>{btnState}</Button>
+            { !videoData ? (
+              <Button disabled={disableHandler()} onClick={(e) => handleUploadImage(e)}>{btnState}</Button>
+            ) : (
+              <Button onClick={() => nextStep()}>{btnState}</Button>
+            )}
           </SubmitWrapper>
         </FormContentWrapper>
       </FormLeft>
@@ -129,7 +126,7 @@ const GenerateVideo = ({ teamId }) => {
               </>
             )}
             {videoData && (
-            <video width="541" height="304" controls>
+            <video width="541" height="304" autoPlay controls>
               <source src={videoData} type="video/mp4" />
             </video>
             )}
@@ -228,13 +225,16 @@ const VideoWrapper = styled.div`
 `;
 
 const LoadingText = styled.p`
-  margin-top: 1rem;
+  margin-top: 1.6rem;
   font-size: 1.8rem;
   color: white;
 `;
 
 GenerateVideo.propTypes = {
   teamId: string.isRequired,
+  nextStep: func.isRequired,
+  videoData: string.isRequired,
+  setVideoData: func.isRequired,
 };
 
 export default GenerateVideo;
