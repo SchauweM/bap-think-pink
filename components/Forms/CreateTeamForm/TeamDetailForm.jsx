@@ -147,6 +147,7 @@ const RadioSelectContainer = styled.div`
 const RadioWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 2rem;
 `;
 
 const ErrorContainer = styled.div`
