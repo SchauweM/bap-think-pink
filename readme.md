@@ -1,10 +1,10 @@
 # bap-think-pink
 
 ## Installation
-Installeer volgende zaken om video's te kunnen renderen.
+Installeer volgende zaken om video's te kunnen renderen en uplaoden naar Google Cloud Store.
 
 ```
-yarn global add @nexrender/server @nexrender/worker @nexrender/action-encode @nexrender/action-upload
+yarn global add @nexrender/server @nexrender/worker @nexrender/action-encode @nexrender/action-upload @nexrender/provider-gs
 ```
 
 ## Render server & worker starten
