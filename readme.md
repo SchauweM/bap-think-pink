@@ -4,7 +4,7 @@
 Installeer volgende zaken om video's te kunnen renderen.
 
 ```
-yarn add global @nexrender/server @nexrender/worker @nexrender/action-encode @nexrender/action-upload
+yarn global add @nexrender/server @nexrender/worker @nexrender/action-encode @nexrender/action-upload
 ```
 
 ## Render server & worker starten
